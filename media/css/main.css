@@ -16,10 +16,10 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100vh;
-	width: 100vw;
 	position: absolute;
 	top: 0;
 	left: 0;
+    right: 0;
 	text-align: center;
 	overflow: hidden;
 	display: flex;
@@ -62,7 +62,6 @@ body {
 }
 
 .pseudonym {
-	width: 100vw;
 	height: 100vh;
 	position: relative;
 	z-index: 1;
