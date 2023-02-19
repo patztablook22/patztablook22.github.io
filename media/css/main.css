@@ -13,6 +13,9 @@ body {
 /* } */
 
 .profile-pic {
+}
+
+.profile-pic .layer {
 	margin: 0;
 	padding: 0;
 	height: 100vh;
@@ -24,12 +27,8 @@ body {
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
-}
-
-.profile-pic span {
-	color: #777;
-	line-height: calc(100vh / 32);
-	font-size: calc(min(100vh / 40, 100vw / 40));
+	white-space: pre;
+	font-family: 'Roboto Mono', monospace;
 	-webkit-user-select: none;
 	/* Chrome all / Safari all */
 	-moz-user-select: none;
@@ -38,8 +37,22 @@ body {
 	/* IE 10+ */
 	user-select: none;
 	/* Likely future */
-	white-space: pre;
-	font-family: 'Roboto Mono', monospace;
+	color: #777;
+}
+
+.profile-pic .index0 {
+	line-height: calc(100vh / 31);
+	font-size: calc(min(100vh / 40, 100vw / 40));
+}
+
+.profile-pic .index1 {
+    font-size: 2.5rem;
+    opacity: 0.20;
+}
+
+.profile-pic .index2 {
+    font-size: 5rem;
+    opacity: 0.15;
 }
 
 .scroll-down-notification {
@@ -68,6 +81,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    padding-top: 1.3rem;
 }
 
 .pseudonym .center {
