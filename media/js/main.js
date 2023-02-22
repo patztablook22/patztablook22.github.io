@@ -20,15 +20,12 @@ function Animation(element) {
 const main = () => {
     let toAnimate0 = document.getElementById("to-animate0");
     let toAnimate1 = document.getElementById("to-animate1");
-    let toAnimate2 = document.getElementById("to-animate2");
     let animation0 = new Animation(toAnimate0);
     let animation1 = new Animation(toAnimate1);
-    let animation2 = new Animation(toAnimate1);
 
     window.setInterval(() => {
         animation0.tick();
         animation1.tick();
-        animation2.tick();
     }, 250);
 }
 
