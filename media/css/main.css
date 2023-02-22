@@ -47,12 +47,12 @@ body {
 
 .profile-pic .index1 {
     font-size: 2.5rem;
-    opacity: 0.20;
+    opacity: 0.33;
 }
 
 .profile-pic .index2 {
     font-size: 5rem;
-    opacity: 0.15;
+    opacity: 0.25;
 }
 
 .scroll-down-notification {
