@@ -46,14 +46,14 @@ body {
 }
 
 .profile-pic .index1 {
-    font-size: 2.5rem;
 	line-height: calc(100vh / 19);
+	font-size: calc(min(100vh / 24.5, 100vw / 24.5));
     opacity: 0.33;
 }
 
 .profile-pic .index2 {
-    font-size: 5rem;
 	line-height: calc(100vh / 9);
+	font-size: calc(min(100vh / 12.25, 100vw / 12.25));
     opacity: 0.25;
 }
 
