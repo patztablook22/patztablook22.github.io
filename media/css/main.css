@@ -13,6 +13,38 @@ body {
 /* } */
 
 .profile-pic {
+    border-bottom: 1rem solid #0b0b0b;
+}
+
+.profile-pic .img-container {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+@keyframes anim {
+    0% {
+        filter: blur(2rem) brightness(0);
+    }
+    100% {
+        filter: blur(2rem) brightness(0.89);
+    }
+}
+
+.img-container img {
+    display: inline;
+    height: 100%;
+    filter: blur(2rem) brightness(0.89);
+    margin: 0;
+    padding: 0;
+    margin-left: calc(50vw - 50vh - 2rem);
+    /*animation: anim 1s;
+    animation-iteration-count: 1;*/
 }
 
 .profile-pic .layer {
@@ -83,7 +115,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-    padding-top: 1.3rem;
+    padding-top: 0;
 }
 
 .pseudonym .center {
@@ -121,6 +153,15 @@ body {
 
 .wall {
 	margin: 4rem;
+    column-count: 1;
+    column-gap: 3rem;
+}
+
+@media (min-width: 800px) {
+    .wall {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 }
 
 .wall .time {}
@@ -129,6 +170,8 @@ body {
 	padding: 1rem 1rem 0rem 1rem;
 	line-height: 150%;
 	text-align: justify;
+    display: inline-block;
+    width: 100%;
 }
 
 .wall section h2 {
