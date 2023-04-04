@@ -8,10 +8,6 @@ body {
 	/* scrollbar-width: none; */
 }
 
-/* body::-webkit-scrollbar { */
-/* display: none; */
-/* } */
-
 .profile-pic {
     border-bottom: 1rem solid #0b0b0b;
 }
@@ -45,67 +41,6 @@ body {
     margin-left: calc(50vw - 50vh - 2rem);
     /*animation: anim 1s;
     animation-iteration-count: 1;*/
-}
-
-.profile-pic .layer {
-	margin: 0;
-	padding: 0;
-	height: 100vh;
-	position: absolute;
-	top: 0;
-	left: 0;
-    right: 0;
-	text-align: center;
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	white-space: pre;
-	font-family: 'Roboto Mono', monospace;
-	-webkit-user-select: none;
-	/* Chrome all / Safari all */
-	-moz-user-select: none;
-	/* Firefox all */
-	-ms-user-select: none;
-	/* IE 10+ */
-	user-select: none;
-	/* Likely future */
-	color: #777;
-}
-
-.profile-pic .index0 {
-	line-height: calc(100vh / 31);
-	font-size: calc(min(100vh / 40, 100vw / 40));
-}
-
-.profile-pic .index1 {
-	line-height: calc(100vh / 19);
-	font-size: calc(min(100vh / 24.5, 100vw / 24.5));
-    opacity: 0.33;
-}
-
-.profile-pic .index2 {
-	line-height: calc(100vh / 9);
-	font-size: calc(min(100vh / 12.25, 100vw / 12.25));
-    opacity: 0.25;
-}
-
-.scroll-down-notification {
-	position: absolute;
-	top: calc(100vh - 3rem);
-	right: 0;
-	padding: 1rem;
-	height: 1rem;
-	font-family: 'Roboto Mono', monospace;
-	color: #666;
-	background: black;
-	-webkit-user-select: none;
-	/* Chrome all / Safari all */
-	-moz-user-select: none;
-	/* Firefox all */
-	-ms-user-select: none;
-	/* IE 10+ */
-	user-select: none;
-	/* Likely future */
 }
 
 .pseudonym {
@@ -164,8 +99,6 @@ body {
     }
 }
 
-.wall .time {}
-
 .wall section {
 	padding: 1rem 1rem 0rem 1rem;
 	line-height: 150%;
@@ -177,6 +110,7 @@ body {
 .wall section h2 {
 	width: 100%;
 	border-bottom: 1px solid grey;
+    padding-bottom: 0.5rem;
 }
 
 .wall section a {
