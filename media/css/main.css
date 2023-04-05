@@ -8,6 +8,18 @@ body {
 	/* scrollbar-width: none; */
 }
 
+.noselect {
+    -webkit-user-select: none;
+	/* Chrome all / Safari all */
+	-moz-user-select: none;
+	/* Firefox all */
+	-ms-user-select: none;
+	/* IE 10+ */
+	user-select: none;
+	/* Likely future */
+
+}
+
 .profile-pic {
     border-bottom: 1rem solid #0b0b0b;
 }
@@ -23,12 +35,15 @@ body {
     right: 0;
 }
 
-@keyframes anim {
+@keyframes reveal {
     0% {
-        filter: blur(2rem) brightness(0);
+        opacity: 0;
     }
-    100% {
-        filter: blur(2rem) brightness(0.89);
+    25% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
     }
 }
 
@@ -39,8 +54,8 @@ body {
     margin: 0;
     padding: 0;
     margin-left: calc(50vw - 50vh - 2rem);
-    /*animation: anim 1s;
-    animation-iteration-count: 1;*/
+    animation: reveal 2s;
+    animation-iteration-count: 1;
 }
 
 .pseudonym {
@@ -51,18 +66,12 @@ body {
 	justify-content: center;
 	align-items: center;
     padding-top: 0;
+    animation: reveal 2s;
+    animation-iteration-count: 1;
 }
 
 .pseudonym .center {
 	text-align: center;
-	-webkit-user-select: none;
-	/* Chrome all / Safari all */
-	-moz-user-select: none;
-	/* Firefox all */
-	-ms-user-select: none;
-	/* IE 10+ */
-	user-select: none;
-	/* Likely future */
 }
 
 .pseudonym h1 {
@@ -71,6 +80,21 @@ body {
 	color: #ddd;
 	padding: 0;
 	margin: 0;
+}
+
+@keyframes blinkyBlink {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 0}
+}
+
+.pseudonym h1:after {
+    display: inline-block;
+    width: 1rem;
+    content: '█';
+    margin-left: 0.5rem;
+    opacity: 0;
+    animation: blinkyBlink 1.5s infinite;
 }
 
 .pseudonym .links {
