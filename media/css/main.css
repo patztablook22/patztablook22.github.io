@@ -39,10 +39,10 @@ body {
     0% {
         opacity: 0;
     }
-    25% {
+    50% {
         opacity: 0;
     }
-    75% {
+    100% {
         opacity: 1;
     }
 }
@@ -54,7 +54,7 @@ body {
     margin: 0;
     padding: 0;
     margin-left: calc(50vw - 50vh - 2rem);
-    animation: reveal 2s;
+    animation: reveal 1s;
     animation-iteration-count: 1;
 }
 
@@ -66,7 +66,7 @@ body {
 	justify-content: center;
 	align-items: center;
     padding-top: 0;
-    animation: reveal 2s;
+    animation: reveal 1s;
     animation-iteration-count: 1;
 }
 
