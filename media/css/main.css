@@ -50,7 +50,7 @@ body {
 .img-container img {
     display: inline;
     height: 100%;
-    filter: blur(2rem) brightness(0.89);
+    filter: blur(3.1vh) brightness(0.89);
     margin: 0;
     padding: 0;
     margin-left: calc(50vw - 50vh - 2rem);
