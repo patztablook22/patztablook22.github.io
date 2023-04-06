@@ -54,8 +54,15 @@ body {
     margin: 0;
     padding: 0;
     margin-left: calc(50vw - 50vh - 2rem);
-    animation: reveal 1s;
-    animation-iteration-count: 1;
+}
+
+.to-reveal {
+    transition: opacity 1s !important;
+    opacity: 0;
+}
+
+.revealed {
+    opacity: 1 !important;
 }
 
 .pseudonym {
@@ -66,8 +73,6 @@ body {
 	justify-content: center;
 	align-items: center;
     padding-top: 0;
-    animation: reveal 1s;
-    animation-iteration-count: 1;
 }
 
 .pseudonym .center {
