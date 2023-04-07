@@ -2,8 +2,12 @@ const main = () => {
     const image = document.querySelector("#bg-img");
     const pseudonym = document.querySelector(".pseudonym");
 
-    if (image.complete) 
+
+    if (image.complete) {
+        image.classList.remove("unrevealed");
+        pseudonym.classList.remove("unrevealed");
         return;
+    }
 
     image.classList.add("to-reveal");
     pseudonym.classList.add("to-reveal");
@@ -13,8 +17,8 @@ const main = () => {
     const reveal = () => {
         if (++counter < 2) return;
 
-        image.classList.add("revealed");
-        pseudonym.classList.add("revealed");
+        image.classList.remove("unrevealed");
+        pseudonym.classList.remove("unrevealed");
     }
 
     image.onload = reveal;

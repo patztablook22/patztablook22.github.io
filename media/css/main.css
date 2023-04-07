@@ -56,9 +56,12 @@ body {
     margin-left: calc(50vw - 50vh - 3vh);
 }
 
+.unrevealed {
+    opacity: 0;
+}
+
 .to-reveal {
     transition: opacity 1s !important;
-    opacity: 0;
 }
 
 .revealed {
