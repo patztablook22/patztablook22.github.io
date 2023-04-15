@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-04-15T05:57:24+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">patztablook22</title><subtitle>Hi. I figured I am not nearly as narcissistic as I can. Therefore I made this website that precisely zero people  are ever going to give a fig about. If you&apos;re reading this, I literally don&apos;t believe you&apos;re a human person. Kindly enjoy your non-existence.</subtitle><entry><title type="html">Quantum computing with Jaq</title><link href="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html" rel="alternate" type="text/html" title="Quantum computing with Jaq" /><published>2023-03-20T00:45:01+00:00</published><updated>2023-03-20T00:45:01+00:00</updated><id>http://localhost:4000/2023/03/20/quantum-computing-with-jaq</id><content type="html" xml:base="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html"><![CDATA[<p>Jaq is a Quantum computing engine for Java that focuses on usage simplicity
+and modularity. It provides an abstraction of a quantum computer, the
+Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently
+of the underlying QVM implementation. I have written a quantum computer
+simulator that uses sparse linear algebra.</p>
+
+<p>For details, see the project <a href="https://start.duckduckgo.com/">repository</a>.</p>
+
+<p align="center">
+<img src="https://github.com/patztablook22/jaq/raw/main/src/main/java/io/github/patztablook22/jaq/doc-files/jaq.png" style="padding: 2rem; height: 22em" />
+</p>
+
+<h2 id="lifecycle">Lifecycle</h2>
+
+<p>Jaq is based on a simple life cycle:</p>
+
+<ol>
+  <li>Build a quantum circuit.</li>
+  <li>Choose a QVM (quantum virtual machine) backend.</li>
+  <li>Run the circuit.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Program</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    
+    <span class="c1">// Step 1. Build a quantum circuit.</span>
+    <span class="kt">var</span> <span class="n">circ</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Qcircuit</span><span class="o">()</span> <span class="o">{{</span>
+      <span class="n">hadamard</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+      <span class="n">cnot</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+      <span class="n">measure</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">}};</span>
+    
+    <span class="c1">// Step 2. Choose a QVM backend.</span>
+    <span class="nc">Qvm</span> <span class="n">backend</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleSimulator</span><span class="o">();</span>
+    
+    <span class="c1">// Step 3. Run the circuit.</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">measurements</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">circ</span><span class="o">);</span>
+  
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="quantum-circuits">Quantum circuits</h2>
+
+<p>Jaq provides <code class="language-plaintext highlighter-rouge">Qcircuit</code>, a convenient API for design, inspection, and composition of Quantum circuits.</p>
+
+<p>A compact way of defining a quantum circuit is using anynomous subclassing and the initializer block, like in the example above:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">circuit</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Qcircuit</span><span class="o">()</span> <span class="o">{{</span>
+
+  <span class="cm">/* superposition */</span>
+  <span class="n">hadamard</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+       
+  <span class="cm">/* entanglement */</span>
+  <span class="n">cnot</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+  <span class="cm">/* measurement */</span>
+  <span class="n">measure</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+  <span class="n">measure</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+<span class="o">}};</span>
+</code></pre></div></div>
+
+<p>For a more fine control, <code class="language-plaintext highlighter-rouge">Qcircuit</code> can be simply inherited by a named subclass, which can e.g. automate the construction of the quantum circuit based on some parameters:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyCircuit</span> <span class="kd">extends</span> <span class="nc">Qcircuit</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">MyCircuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">qubits</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">qubits</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+      <span class="n">hadamard</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
+    <span class="cm">/* ... */</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The circuits can be then run on any implementation of the Quantum virtual machine. The QVM is an abstraction of a quantum computer. The backend implementing that abstraction can be a custom quantum computer, a simulator, or a quantum computer availble over a public service.</p>
+
+<p>Jaq is designed to be as modular as possible. New backends can be implemented by easily by hand. It is possible to build application-specific quantum computing libraries based on Jaq, utilizing the flexible <code class="language-plaintext highlighter-rouge">Qcircuit</code> API.</p>
+
+<p>Especially when debugging, it is often useful to see the quantum circuit’s diagram. This can be done simply by:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Qcircuit</span> <span class="n">circ</span> <span class="o">=</span> <span class="cm">/* ... */</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">circ</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Output for the circuit in the example code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>q0:  ─H─┬───
+q1:  ───+─M─
+c0:  ═════╚═
+</code></pre></div></div>
+
+<p>Or a more complex circuit, with some nested subcircuits:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>q0:  ─H───────────────────┌──────────┐─
+q1:  ─H─Rx─┬─X────────────┤0  Inner2 ├─
+q2:  ─H────┊─┬────────M─X─┤1         ├─
+q3:  ─H────+─+────────║─X─└──────────┘─
+q4:  ─┌─────────────┐─║────────────────
+q5:  ─┤0  InnerA... ├─║────────────────
+c0:  ═╡0            ╞═║════════════════
+c1:  ═└─────────────┘═╚════════════════
+</code></pre></div></div>
+
+<h2 id="qvm-backends">QVM backends</h2>
+
+<p>Jaq quantum circuits are backend-agnostic. A <code class="language-plaintext highlighter-rouge">Qvm</code> implementation is expected to provide the full functionality of a quantum computer, constrained only by the resources available. Namely:</p>
+
+<ul>
+  <li>Accepting circuits with any quantum nodes.</li>
+  <li>Implicitly or explicitly inlining all nested subcircuits.</li>
+  <li>Never modifying the given quantum circuits. All intermediate representations should be kept separately.</li>
+  <li>Transpiling not directly supported (e.g. more complex) quantum operations into the backend’s universal set.</li>
+  <li>Optimizing the resulting flow graph.</li>
+  <li>Caching it for efficient reuse.</li>
+</ul>
+
+<h2 id="the-simulator-theory">The simulator theory</h2>
+
+<p>The theory behind quantum computing is roughly available at many places online.
+To get started, I recommend <a href="https://qiskit.org/learn/">Qiskit learn</a>.
+However, as I figured, these resources go only as deep as 1 or 2 qubit
+circuits. When implementing an actualy simulator, this is not nearly enough.</p>
+
+<p>One of the challenges that I faced was the following. Consider a quantum
+circuit with two qubits. The CNOT gate has a very simple formulation
+as the unitary matrix:</p>
+
+<p>\[ \mathop{CNOT} = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ \end{pmatrix}. \]</p>
+
+<p>The computation then consists of merely applying this operator on the quantum state vector:</p>
+
+<p>\[ \ket{\psi’} = \mathop{CNOT} \ket{\psi}. \]</p>
+
+<p>However, this trivial case doesn’t generalize to quantum circuits with more qubits. For example,
+let’s have a circuit with 10 qubits, and we want to flip the 4th qubit depending
+on the 7th qubit. How does one achieves this? Should we mirror the matrix,
+stretch it, fill it with zeros, and pray?</p>
+
+<p>The solution to this is to be sought in a bit deeper understanding
+of linear algebra, especially of the tensor product and the Kronecker product.
+The above 2-qubit \( \mathop{CNOT} \) matrix can be expressed as:</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2} + \ket{1} \bra{1} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} . \]</p>
+
+<p>A way to think about it may be as an implicit if condition simulated
+using the Hilbert space basis. From the way
+matrix multiplication works, the matrix \( \ket{a} \bra{b} \) matches 
+the basis vector \( \ket{b} \) on the input, and transforms it into
+\( \ket{a} \) on the output, i.e.</p>
+
+<p>\[ (\ket{a} \bra{b}) \cdot \ket{b} = \ket{a} \cdot \braket{a|b} = \ket{a}. \]</p>
+
+<p>And in the case the wrong input basis vector is given, it returns the zero vector \( \mathbf{0} \):</p>
+
+<p>\[ (\ket{a} \bra{b}) \cdot \ket{c} = \ket{a} \cdot \braket{a|c} = \ket{a} \cdot 0 = \mathbf{0}. \]</p>
+
+<p>Moving a layer up, 
+\( \ket{0} \bra{0} \otimes I_{2} \)
+applies the discussed “if condition” matching the 0 basis in the first qubit (and returning
+it back) and it 
+additionally ties (thanks to the Kronecker product) the conditioned identity operator on the second qubit to it. 
+Similarly the matrix</p>
+
+<p>\[ \ket{1} \bra{1} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} ) \]</p>
+
+<p>applies the “if condition” matching the 1 basis in the first qubit (and returning
+it back again) and ties the conditioned “swap” operator on the second qubit to it. 
+Finally, by summing the two, we obtain the unitary CNOT matrix</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2} + \ket{1} \bra{1} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} . \]</p>
+
+<p>In our analogy, the first matrix in the addition is active if (and only if) the first
+qubit is 0. In that case it leaves it, and it also leaves the second qubit
+as it is. In case the first qubit is 1, the second matrix is activated.
+It again keeps the first qubit as it is, but now, instead of keeping the other
+qubit, it swaps it.</p>
+
+<p>In case we want to swap the second qubit based on the first one,
+we simply swap the kronecker product operands:</p>
+
+<p>\[ \mathop{CNOT}’ = I_{2} \otimes \ket{0} \bra{0} + \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes \ket{1}\bra{1}. \]</p>
+
+<p>Now, instead of “pattern-matching” on the first qubit, we do it on the second one,
+and based on that, we either keep or swap the first qubit.</p>
+
+<p>With this in mind, we are ready to generalize the CNOT gate to an arbitrary
+number of qubits. First, suppose there are M other qubits between
+the controlling qubit and the target one. We want the CNOT gate not to 
+act on these at all. Well, then we use the Kronecker product to insert
+the appropriate identity matrices into what we already know:</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2^M} \otimes I_{2} + \ket{1} \bra{1} \otimes I_{2^M} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} . \]</p>
+
+<p>\[ \mathop{CNOT}’ = I_{2} \otimes I_{2^M} \otimes \ket{0} \bra{0} + \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes I_{2^M} \otimes \ket{1}\bra{1}. \]</p>
+
+<p>Here, we use the fact the identity matrix \( I_2 \) doesn’t change the qubit it acts on and
+that 
+\[I_2^{\otimes M} = I_{2^M}. \]</p>
+
+<p>The final step to the complete formula is considering what to do, when
+there are some L qubits before and N qubits after the ones we’re focusing on. We
+again want the CNOT gate not to act on them at all, so we again use the
+identity matrix trick:</p>
+
+<p>\[ \mathop{CNOT} = I_{2^L} \otimes \ket{0} \bra{0} \otimes I_{2^M} \otimes I_{2} \otimes I_{2^N} + I_{2^L} \otimes \ket{1} \bra{1} \otimes I_{2^M} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes I_{2^N}. \]</p>
+
+<p>\[ \mathop{CNOT}’ = I_{2^L} \otimes I_{2} \otimes I_{2^M} \otimes \ket{0} \bra{0} \otimes I_{2^N} + I_{2^L} \otimes \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes I_{2^M} \otimes \ket{1}\bra{1} \otimes I_{2^N}. \]</p>
+
+<p>It’s actually that simple! Still I found a bit frustrating
+it’s nowhere to find online. Moreover, one can use similar reasoning 
+to find the general formulas for the other quantum gates too.</p>
+
+<h2 id="putting-it-to-work">Putting it to work</h2>
+
+<p>After lots of experimenting, I came to the conclusion the most efficient
+way to actually implement all that linear algebra is using sparse arithmetic.
+The reason for it is that the dimension of the underlying Hilbert space increases
+exponentially with the number of qubits:</p>
+
+<p>\[ \mathop{dim} H = 2^Q \]</p>
+
+<p>This already means we will run out of memory quite quickly when we
+start approaching about 30 qubits, because the vector will be too big. But we also
+need to have the transformation matrices, which are <em>quadratically</em> big!</p>
+
+<p>Luckily, most of the values in the matrices turn out to be 0. This can be used 
+to store and manipulate only the nonzero entries of the matrices.
+For all the operations needed (matrix-vector product, Kronecker product, 
+matrix addition), this leads to <em>linear time complexity</em> with respect
+to the number of nonzero entries.</p>
+
+<p>In retrospect, it is quite obvious to me I should have used sparse arithmetic. 
+But I wanted to be really sure of it
+before I started writing the hundreds of lines of code it necessitates,
+so I spent some time e.g. plotting various matrix histograms to see whether
+it is indeed the optimal solution.</p>
+
+<p>Having the sparse linear algebra implemented, we can just take
+the CNOT formula that we discovered earlier:</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2^M} \otimes I_{2} + \ket{1} \bra{1} \otimes I_{2^M} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} , \]</p>
+
+<p>and directly translate it to code (it would be analogous for \( \mathop{CNOT}’ \)):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Ket</span> <span class="nf">cnot</span><span class="o">(</span><span class="nc">Ket</span> <span class="n">state</span><span class="o">,</span> <span class="kt">int</span> <span class="n">controlQubit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">targetQubit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">totalQubits</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">controlQubit</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">targetQubit</span> <span class="o">-</span> <span class="n">controlQubit</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">totalQubits</span> <span class="o">-</span> <span class="n">targetQubit</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+
+    <span class="n">val</span> <span class="n">kernel</span> <span class="o">=</span> <span class="nc">SparseOperator</span><span class="o">.</span><span class="na">basisKetbra</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">basisKetbra</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">yey</span><span class="o">(</span><span class="mi">2</span><span class="o">)));</span>
+
+    <span class="n">val</span> <span class="n">operator</span> <span class="o">=</span> <span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="n">kernel</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">operator</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Voilà.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Jaq is a Quantum computing engine for Java that focuses on usage simplicity and modularity. It provides an abstraction of a quantum computer, the Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently of the underlying QVM implementation. I have written a quantum computer simulator that uses sparse linear algebra.]]></summary></entry><entry><title type="html">Rings, subrings, and ideals</title><link href="http://localhost:4000/2023/03/13/rings-and-ideals.html" rel="alternate" type="text/html" title="Rings, subrings, and ideals" /><published>2023-03-13T00:45:01+00:00</published><updated>2023-03-13T00:45:01+00:00</updated><id>http://localhost:4000/2023/03/13/rings-and-ideals</id><content type="html" xml:base="http://localhost:4000/2023/03/13/rings-and-ideals.html"><![CDATA[<p>A (commutative, unital) ring is the 3-tuple \( (R, +, \cdot) \) such that
+\( (R, +) \) is an Abelian group, \( (R, \cdot) \) is a commutative monoid,
+and the two satisfy mutually distributive laws. \( S \subset R \) is a 
+subring of \( R \) if there exists a ring morphism \(R \to S \). An
+ideal \(I \subset R \) is a additive subgroup of \( R \) that absorbs
+all multiplication: \( \forall i \in I, r \in R: ir \in R \).</p>
+
+<p>The coursework consisted of a set of exercises exploring the three, and
+the links between them.</p>
+
+<p><a href="https://drive.google.com/file/d/1PIA8X3oxXDm9q1_EkRDLVtnIKDHuyOo5/view?usp=share_link">Link to pdf</a></p>
+
+<p>Coursework for the <a href="https://course-module-catalog.port.ac.uk/#/moduleDetail/M20727/2022%2F23">Abstract Algebra</a>
+University of Portsmouth module.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[A (commutative, unital) ring is the 3-tuple \( (R, +, \cdot) \) such that \( (R, +) \) is an Abelian group, \( (R, \cdot) \) is a commutative monoid, and the two satisfy mutually distributive laws. \( S \subset R \) is a subring of \( R \) if there exists a ring morphism \(R \to S \). An ideal \(I \subset R \) is a additive subgroup of \( R \) that absorbs all multiplication: \( \forall i \in I, r \in R: ir \in R \).]]></summary></entry><entry><title type="html">ETRA 2019 challenge report</title><link href="http://localhost:4000/2023/03/09/etra-2019.html" rel="alternate" type="text/html" title="ETRA 2019 challenge report" /><published>2023-03-09T00:45:01+00:00</published><updated>2023-03-09T00:45:01+00:00</updated><id>http://localhost:4000/2023/03/09/etra-2019</id><content type="html" xml:base="http://localhost:4000/2023/03/09/etra-2019.html"><![CDATA[<p>Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed 
+to check for <em>one-to-one</em>
+search correspondence in <em>puzzle</em> type experiments and for heterogeneities
+of visual attention with respect to the target area color. For <em>puzzle</em>
+compared to <em>non-puzzle</em> image types, left image attention
+is found to be a significant predictor of the right image attention,
+suggesting one-to-search search patterns. The observed color heterogeneities,
+e.g. RGB red or HSV value are discussed.</p>
+
+<hr />
+
+<p><a href="https://drive.google.com/file/d/1-H__EVVezoV0aEFNOtTsKUkw3c74Ts6V/view?usp=share_link">Link to pdf</a></p>
+
+<p>Semestral work for the <a href="http://csng.mff.cuni.cz/ikv1.html">Informatics and Cognitive Sciences</a>
+MFF course.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed to check for one-to-one search correspondence in puzzle type experiments and for heterogeneities of visual attention with respect to the target area color. For puzzle compared to non-puzzle image types, left image attention is found to be a significant predictor of the right image attention, suggesting one-to-search search patterns. The observed color heterogeneities, e.g. RGB red or HSV value are discussed.]]></summary></entry><entry><title type="html">Visual search experiment</title><link href="http://localhost:4000/2023/03/09/visual-search-experiment.html" rel="alternate" type="text/html" title="Visual search experiment" /><published>2023-03-09T00:45:01+00:00</published><updated>2023-03-09T00:45:01+00:00</updated><id>http://localhost:4000/2023/03/09/visual-search-experiment</id><content type="html" xml:base="http://localhost:4000/2023/03/09/visual-search-experiment.html"><![CDATA[<p>This report lays out the basics of visual search and 
+the evaluation of its perfomance. Participants were asked
+to take a short visual search test. The reaction time slope
+was found to be significantly larger when the target is absent 
+and when a conjunction of multiple features is being
+considered. Discussion of the results is given.</p>
+
+<hr />
+
+<p><a href="https://drive.google.com/file/d/1BO1kwEBec9QOunMLz6kIjbVpeSxXPw9k/view?usp=share_link">Link to pdf</a></p>
+
+<p>Semestral work for the <a href="http://csng.mff.cuni.cz/ikv1.html">Informatics and Cognitive Sciences</a>
+MFF course.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[This report lays out the basics of visual search and the evaluation of its perfomance. Participants were asked to take a short visual search test. The reaction time slope was found to be significantly larger when the target is absent and when a conjunction of multiple features is being considered. Discussion of the results is given.]]></summary></entry><entry><title type="html">Tensor arithmetic with Matcha</title><link href="http://localhost:4000/2023/02/10/tensor-arithmetic-with-matcha.html" rel="alternate" type="text/html" title="Tensor arithmetic with Matcha" /><published>2023-02-10T00:45:01+00:00</published><updated>2023-02-10T00:45:01+00:00</updated><id>http://localhost:4000/2023/02/10/tensor-arithmetic-with-matcha</id><content type="html" xml:base="http://localhost:4000/2023/02/10/tensor-arithmetic-with-matcha.html"><![CDATA[<p>In my first university year, I was motivated by the lectures of Milan Straka,
+an amazing teacher at MFF, to delve (deeper than I should have, in retrospect)
+into the lower-levels of machine learning. Due to being a sperger when it comes
+to blackboxes, I decided to start implementing my own Numpy/Tensorflow, fully
+in C++, which I am going to introduce in this post.</p>
+
+<p>For details, see the project <a href="https://matcha-ai.github.io/matcha/">homepage</a>.</p>
+
+<p><img src="https://matcha-ai.github.io/matcha/media/img/matcha130.png" style="float: left; height: 8em; padding: 0 2rem;" /></p>
+
+<p>Matcha is a framework for optimized tensor arithmetic and
+machine learning. It features a very intuitive interface
+inspired by Numpy and Keras. Matcha brings all this to C++.</p>
+
+<p>It also provides a way to accelerate itself by Just-In-Time
+inspecting and modifying the structure of given tensor functions
+and compiling them into a set of instructions.  On top of that, Matcha delivers a dataset pipeline system, 
+automatic differentiation system, and neural networks framework.</p>
+
+<p>Due to its extent, I split Matcha into two semestral projects,
+the first one dealing with most of the engine, while the other focused
+on Tensorflow-like graphs.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;matcha&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">matcha</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Net</span> <span class="n">net</span> <span class="p">{</span>
+    <span class="n">nn</span><span class="o">::</span><span class="n">flatten</span><span class="p">,</span>                             <span class="c1">// flatten the inputs</span>
+    <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">300</span><span class="p">,</span> <span class="s">"relu,batchnorm"</span><span class="p">},</span>           <span class="c1">// hidden layer</span>
+    <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="s">"softmax"</span><span class="p">}</span>                    <span class="c1">// output layer</span>
+  <span class="p">};</span>
+
+  <span class="n">Dataset</span> <span class="n">mnist</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">"mnist_train.csv"</span><span class="p">);</span>   <span class="c1">// load the MNIST dataset</span>
+  <span class="n">net</span><span class="p">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Nll</span><span class="p">{};</span>                      <span class="c1">// use the negative log likelihood loss</span>
+  <span class="n">net</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mnist</span><span class="p">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">64</span><span class="p">));</span>                  <span class="c1">// fit the model</span>
+
+  <span class="n">tensor</span> <span class="n">digit</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">"digit.png"</span><span class="p">);</span>          <span class="c1">// load a single digit image</span>
+  <span class="n">tensor</span> <span class="n">probabilities</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">digit</span><span class="p">);</span>         <span class="c1">// make a prediction</span>
+  <span class="n">tensor</span> <span class="n">result</span> <span class="o">=</span> <span class="n">argmax</span><span class="p">(</span><span class="n">probabilities</span><span class="p">);</span>     <span class="c1">// voila</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"it is "</span> <span class="o">&lt;&lt;</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="s">" with "</span>
+            <span class="o">&lt;&lt;</span> <span class="n">probabilities</span><span class="p">[</span><span class="n">result</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">&lt;&lt;</span> <span class="s">"% probability"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="tensor-arithmetic">Tensor arithmetic</h2>
+
+<p>Matcha provides a primitive-like type <code class="language-plaintext highlighter-rouge">tensor</code> to enable large-scale computations.
+Tensors represent multidimensional arrays of data of a signle type (usually <code class="language-plaintext highlighter-rouge">Float</code>).</p>
+
+<p>Creating a tensor can be as simple as:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>We have just successfully created a tensor holding the scalar value 42.
+But usually, we want to represent <em>much</em> bigger data. For example, we may want to create
+a 100x100 matrix with all values initialized to zero or to some custom values:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">b</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Tensors can be reassigned without a problem:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">c</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span>
+            <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span>
+            <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">}};</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Tensor arithmetic is a core functionality of Matcha.
+It is designed to be done very intuitively, much like in Numpy:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">d</span><span class="p">;</span>           <span class="c1">// forward-declaration is possible too</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mx">2i</span><span class="p">);</span>   <span class="c1">// complex numbers</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">);</span>   <span class="c1">// and so on...</span>
+</code></pre></div></div>
+
+<p>Matcha implements also linear algebra operations and various operations
+for composing tensors:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">d</span> <span class="o">=</span> <span class="n">transpose</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>   <span class="c1">// transposition</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>          <span class="c1">// transposition, but shorter</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">matmul</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>   <span class="c1">// matrix multiplication</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">cat</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>       <span class="c1">// concatenating b and c into one tensor</span>
+</code></pre></div></div>
+
+<h2 id="jit-compilation">JIT compilation</h2>
+
+<p>JIT is an easy-to-use tool for transforming dynamic programs into static ones.
+It takes a native function (or lambda) that only accepts and returns tensors,
+and gives back a reusable optimized version of that same function.</p>
+
+<p>Roughly, this can be thought of as the difference
+between writing a dynamic <a href="https://pytorch.org/">PyTorch</a> code and 
+building a static <a href="https://www.tensorflow.org/">TensorFlow</a> graph.
+Both have advantages and disadvantages. Dynamic code is easier to debug
+and allows greater flexibility. Static graphs, on the other hand, are
+completely language-agnostic and therefore very portable, and often allow
+non-trivial optimizations for performance and memory. Matcha is designed
+in a way that enables both frameworks and lets you decide which is better
+for specific applications.</p>
+
+<p>Consider the following function operating only on tensors:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="nf">foo</span><span class="p">(</span><span class="n">tensor</span> <span class="n">a</span><span class="p">,</span> <span class="n">tensor</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">tensor</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tanh</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+  <span class="n">tensor</span> <span class="n">d</span> <span class="o">=</span> <span class="n">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">t</span><span class="p">(),</span> <span class="n">b</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">exp</span><span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="n">max</span><span class="p">(</span><span class="n">d</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To JIT it, simply call call <code class="language-plaintext highlighter-rouge">jit</code> on it. The higher-order function
+<code class="language-plaintext highlighter-rouge">jit</code> returns the JITed version of the given tensor function. 
+Next, we can use it simply as a usual function:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// JIT foo</span>
+  <span class="k">auto</span> <span class="n">joo</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
+
+  <span class="c1">// prepare inputs</span>
+  <span class="n">tensor</span> <span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">tensor</span> <span class="n">b</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+  <span class="c1">// we can now use `joo` instead of `foo`</span>
+  <span class="n">tensor</span> <span class="n">c</span> <span class="o">=</span> <span class="n">joo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+
+  <span class="c1">// voila</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<pre><code class="language-txt">[[0.0115125   0.056408    0.0413443   ...  0.00737378  0.00350635  0.00479942  0.00427523 ]
+ [0.0115125   0.056408    0.0413443   ...  0.00737378  0.00350635  0.00479942  0.00427523 ]]
+</code></pre>
+
+<h3 id="to-jit-or-not-to-jit">To JIT or not to JIT</h3>
+
+<p><strong>JIT</strong> when:</p>
+
+<ul>
+  <li>The function contains <strong>many operations</strong> operating on <strong>big data</strong>.</li>
+  <li>The <strong>overhead for operation initialization</strong> is too large.</li>
+  <li>The function has only <strong><code class="language-plaintext highlighter-rouge">tensor</code> external parameters</strong> needed in runtime.</li>
+</ul>
+
+<p><strong>Don’t JIT</strong> when:</p>
+
+<ul>
+  <li>The function is not <strong>performance-critical</strong>.</li>
+  <li>You want to <strong>control the function flow</strong>.</li>
+  <li>You want to directly <strong>access tensor buffers</strong>.</li>
+</ul>
+
+<h3 id="jitting-example">Jitting example</h3>
+
+<p>Suppose the following function:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="nf">foo</span><span class="p">(</span><span class="n">tensor</span> <span class="n">a</span><span class="p">,</span> <span class="n">tensor</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">complex_literals</span><span class="p">;</span>
+
+  <span class="n">tensor</span> <span class="n">pl</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">tensor</span> <span class="n">mi</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">tensor</span> <span class="n">mu</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">tensor</span> <span class="n">di</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span>
+
+  <span class="n">pl</span> <span class="o">=</span> <span class="n">pl</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>
+  <span class="n">mi</span> <span class="o">=</span> <span class="n">mi</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>
+  <span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>
+  <span class="n">di</span> <span class="o">=</span> <span class="n">di</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>
+
+  <span class="n">tensor</span> <span class="n">c</span> <span class="o">=</span> <span class="n">matmul</span><span class="p">(</span><span class="n">pl</span><span class="p">,</span> <span class="n">mi</span><span class="p">);</span>
+
+  <span class="n">tensor</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">2.71828</span><span class="p">;</span>
+  <span class="n">d</span> <span class="o">*=</span> <span class="o">-</span><span class="mx">1i</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>JIT it:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">joo</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Building it for <code class="language-plaintext highlighter-rouge">Float[3, 3]</code> inputs produces <strong>the following lambda</strong>:</p>
+
+<pre><code class="language-txt">lambda(a: Float[3, 3], b: Float[3, 3]) -&gt; Cfloat[3, 3] {
+    c = Identity(b)
+    d = Identity(a)
+    e = Add(d, c)
+    f = Subtract(d, c)
+    g = Multiply(d, c)
+    h = Divide(d, c)
+    i = Transpose(e)
+    j = Transpose(f)
+    k = Transpose(g)
+    l = Transpose(h)
+    m = Matmul(i, j)
+    o = Cast(n)
+    q = Multiply(o, p)
+    r = Cast(m)
+    s = Multiply(r, q)
+    t = Identity(s)
+
+    return t
+}
+</code></pre>
+
+<p>Lambda flow can be represented as a directed acyclic multigraph. In make case,
+it will look like this:</p>
+
+<p align="center" style="padding: 1rem; filter: invert(96%)">
+<img src="https://www.plantuml.com/plantuml/svg/NP513eCW44NtdCAbcdW1qpHjsaqNNRKNG46bHL4OclJsPPe9ehl9-myOyayEk0K_QiRoGskqiNMZlJoM9I_B8gkgOvQB8gkpcv0JAFZkjIPgxLPh2Sk2uGqq1-Kin9fsITfX-l0DMDx2glI9qgDoznhKh9CtXaGPKBcgZnAIuOD_g10-BP_SR5pW7V7NZlV4tpi-4DSxheYFOO5Nd7573gFNB9y86eGNxiA_3A5b-vSvOePNu6ZNGvPIjpsqHCmm-i_KpyZxK0KF5G5Mb5J3Jd8IeV8V" />
+</p>
+
+<p>After passing through the lambda with the various optimizers,
+it is <strong>simplified into the following</strong>:</p>
+
+<pre><code class="language-txt">lambda(a: Float[3, 3], b: Float[3, 3]) -&gt; Cfloat[3, 3] {
+    c = Add(a, b)
+    d = Subtract(a, b)
+    e = Matmul(c, d)
+    f = Cast(e)
+    h = Multiply(f, g)
+
+    return h
+}
+</code></pre>
+
+<p>Visualized as following:</p>
+
+<p align="center" style="padding: 1rem; filter: invert(96%)">
+<img src="https://www.plantuml.com/plantuml/svg/VP0z2iCm38LtdSAZOyW5GWafdJlr1F9FqeAS54SUSljAuA4KqksXzxvlqBGp5gwP0EmbRBILmLDDetFeN6VwVZGsT6OmrnX_5_vhSKv7fH_LSy70vueeYj1oKkIEd2k1ykq8McYSjR_XBhgvjKsRSKahevYVQXPB9NwzwG2x_5i2J6cDyeOF" />
+</p>
+
+<p>Voilà, from 16 operations down to 5. That is <strong>reduction by 69%</strong>.</p>
+
+<p>Still, both <code class="language-plaintext highlighter-rouge">foo</code> and <code class="language-plaintext highlighter-rouge">joo</code> should give the same output.
+Let us try it:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Prepare the inputs</span>
+  <span class="n">tensor</span> <span class="n">a</span> <span class="o">=</span> <span class="n">normal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> 
+  <span class="n">tensor</span> <span class="n">b</span> <span class="o">=</span> <span class="n">normal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+  <span class="c1">// Show the results</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"foo:</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span>
+            <span class="o">&lt;&lt;</span> <span class="s">"joo:</span><span class="se">\n</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">joo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<pre><code class="language-txt">foo:
+[[0-18.5888i  0+23.8254i  0-8.41299i ]
+ [0+8.33552i  0-0.151072i 0+1.56344i ]
+ [0-14.3005i  0+21.7137i  0+2.17825i ]]
+
+joo:
+[[0-18.5888i  0+23.8254i  0-8.41299i ]
+ [0+8.33552i  0-0.151072i 0+1.56344i ]
+ [0-14.3005i  0+21.7137i  0+2.17825i ]]
+</code></pre>
+
+<h1 id="automatic-differentiation-with-matcha">Automatic differentiation with Matcha</h1>
+
+<p>Matcha engine integrates a system for automatically computing <em>gradients</em>
+(first order or higher order) of given tensors. It works via caching 
+relevant operations performed on required tensors
+and then <a href="https://en.wikipedia.org/wiki/Backpropagation">backpropagating</a> 
+through them. Note that Matcha backpropagation is fully compatible with 
+Matcha function transformations like JIT.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Backprop</code> is the main class for controlling backpropagation. Conceptually, it
+roughly maps to <a href="https://www.tensorflow.org/api_docs/python/tf/GradientTape"><code class="language-plaintext highlighter-rouge">tf.GradientTape</code></a>.
+Instantiating <code class="language-plaintext highlighter-rouge">Backprop</code> makes the engine cache all performed operations for
+later backpropagation:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">tensor</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="n">Backprop</span> <span class="n">backprop</span><span class="p">;</span>
+
+<span class="n">tensor</span> <span class="n">c</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="nf">square</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Now, we can invoke the backpropagation by calling <code class="language-plaintext highlighter-rouge">backprop</code> and telling
+it what tensor and with respect to (w.r.t.) which tensors to differentiate:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// compute the gradients of `c` w.r.t. `a` and `b`</span>
+<span class="c1">// and return std::map&lt;tensor*, tensor&gt;</span>
+
+<span class="k">auto</span> <span class="n">gradients</span> <span class="o">=</span> <span class="n">backprop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">{</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">gradients</code> variable now holds a map holding the computed gradients for
+\( \frac{\partial c}{\partial a} \) and \( \frac{\partial c}{\partial b} \) .
+Let us inspect these by simply iterating through the pairs in the map:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="p">[</span><span class="n">wrt</span><span class="p">,</span> <span class="n">gradient</span><span class="p">]</span><span class="o">:</span> <span class="n">gradients</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"the gradient w.r.t. "</span> <span class="o">&lt;&lt;</span> <span class="n">wrt</span> <span class="o">&lt;&lt;</span> <span class="s">" is "</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gradient</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The partial derivative with respect to a <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> should be:</p>
+
+<p>\[
+\frac{\partial c}{\partial a} =
+\frac{1}{\partial a} log(b a^2 + 2a) =
+\frac{2ab + 2}{ba^2 + 2a} =
+\frac{2 \cdot 3 \cdot 2 + 2}{2 \cdot 3^2 + 2 \cdot 3} =
+\frac{14}{24} = 0.58\overline{3}
+\]</p>
+
+<p>\[
+\frac{\partial c}{\partial b} =
+\frac{1}{\partial b} log(b a^2 + 2a) =
+\frac{a^2}{ba^2 + 2a} =
+\frac{3^2}{2 \cdot 3^2 + 2 \cdot 3} =
+\frac{9}{24} = 0.375
+\]</p>
+
+<p>Correct! Our Matcha snippet produces the following output:</p>
+
+<pre><code class="language-txt">the gradient w.r.t. 0x7ffd2865a468 is 0.583333
+the gradient w.r.t. 0x7ffd2865a470 is 0.375
+</code></pre>
+
+<h3 id="example">Example</h3>
+
+<p>Usually we want to differentiate much larger tensors, such
+as matrices of neural network parameters.
+The ability to have the gradients computed automatically is priceless
+in machine learning. Suppose we have computed the gradients of some
+loss function w.r.t. neural network parameters. We can then
+perform a single SGD step simply like this:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">tensor</span><span class="o">*&gt;</span> <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
+<span class="n">tensor</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">expected_result</span><span class="p">;</span>   <span class="c1">// suppose we got these from a dataset</span>
+
+<span class="n">Backprop</span> <span class="n">backprop</span><span class="p">;</span>
+<span class="n">tensor</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">neural_network</span><span class="p">(</span><span class="n">inputs</span><span class="p">);</span>
+<span class="n">tensor</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_function</span><span class="p">(</span><span class="n">expected_result</span><span class="p">,</span> <span class="n">outputs</span><span class="p">);</span>
+
+<span class="kt">float</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">5e-3</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="p">[</span><span class="n">param</span><span class="p">,</span> <span class="n">gradient</span><span class="p">]</span><span class="o">:</span> <span class="n">backprop</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">parameters</span><span class="p">))</span>
+  <span class="o">*</span><span class="n">param</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">gradient</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="artificial-neural-networks">Artificial Neural Networks</h2>
+
+<p>Matcha <code class="language-plaintext highlighter-rouge">nn</code> module implements common concepts used in artificial neural 
+network machine learning. This includes <code class="language-plaintext highlighter-rouge">Layers</code>,
+<code class="language-plaintext highlighter-rouge">Losses</code>, and <code class="language-plaintext highlighter-rouge">Optimizers</code>.
+They can be assembled together to create fully functional machine learning
+models. The class <code class="language-plaintext highlighter-rouge">Net</code> provides easy-to-use APIs for work with neural nets,
+inspired by popular state-of-the-art frameworks like
+<a href="https://keras.io/">Keras</a> and <a href="https://pytorch.org/">PyTorch</a>:</p>
+
+<ul>
+  <li><a href="#sequential-api">Sequential</a> API</li>
+  <li><a href="#subclassing-api">Subclassing</a> API</li>
+  <li><a href="#functional-api">Functional</a> API</li>
+</ul>
+
+<p>After demonstrating each of these APIs, we will go through
+<a href="#training-neural-networks">training</a> neural networks and using them for
+generating <a href="#neural-network-predictions">predictions</a>. 
+Note however, that this guide is concerned with explaining the interface
+and does not go into detail on <em>how to design neural networks</em>,
+which can be found in <a href="tutorials/">tutorials</a> (note: work in progress).</p>
+
+<h2 id="sequential-api">Sequential API</h2>
+
+<p>Sequential API is the most straightforward one. It lets you build 
+a neural net simply by declaring its layers in a single list:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Net</span> <span class="n">net</span> <span class="p">{</span>
+  <span class="n">nn</span><span class="o">::</span><span class="n">flatten</span><span class="p">,</span>               <span class="c1">// flatten the inputs</span>
+  <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="s">"tanh"</span><span class="p">},</span>       <span class="c1">// one hidden tanh layer</span>
+  <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="s">"sigmoid"</span><span class="p">}</span>       <span class="c1">// binary classification output layer</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Done! Now we can <a href="#training-neural-networks">train</a> it.</p>
+
+<p>This simplicity comes at a price. 
+   The sequential API can only be used  to build nets with sequential
+   topology. For more complex networks (e.g. with <em>residual connections</em>),
+   use the functional or subclassing API.</p>
+
+<h2 id="subclassing-api">Subclassing API</h2>
+
+<p>Subclassing API, on the other hand, leaves you the most flexibility.
+The trade-off for that is the most extra code. It works through inheriting
+<code class="language-plaintext highlighter-rouge">Net</code> and overriding its protected virtual logic:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">virtual Net::run(const tensor&amp; a) -&gt; tensor</code> <br />
+<code class="language-plaintext highlighter-rouge">virtual Net::run(const tensor&amp; a, const tensor&amp; b) -&gt; tensor</code> <br />
+<code class="language-plaintext highlighter-rouge">virtual Net::run(const tensor&amp; a, const tensor&amp; b, const tensor&amp; c) -&gt; tensor</code> <br />
+<code class="language-plaintext highlighter-rouge">virtual Net::run(const tuple&amp; inputs) -&gt; tuple</code></p>
+</blockquote>
+
+<p>Single batch processing function.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">virtual Net::init(const tensor&amp; a) -&gt; void</code> <br />
+<code class="language-plaintext highlighter-rouge">virtual Net::init(const tensor&amp; a, const tensor&amp; b) -&gt; void</code> <br />
+<code class="language-plaintext highlighter-rouge">virtual Net::init(const tensor&amp; a, const tensor&amp; b, const tensor&amp; c) -&gt; void</code> <br />
+<code class="language-plaintext highlighter-rouge">virtual Net::init(const tuple&amp; inputs) -&gt; void</code></p>
+</blockquote>
+
+<p>Single batch processing function initialization - invoked exactly once,
+before the first <code class="language-plaintext highlighter-rouge">Net::run</code> call. Accepts the same arguments as the
+invoked <code class="language-plaintext highlighter-rouge">Net::run</code>.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">virtual Net::trainStep(Instance i) -&gt; void</code></p>
+</blockquote>
+
+<p>Customizable train step logic. By default, it performs one <em>forward</em> and
+<em>backward</em> propagation using <code class="language-plaintext highlighter-rouge">Backprop</code>, 
+emitting appropriate callback signals.</p>
+
+<p><strong>Gotcha!</strong> In contrast to static machine learning frameworks like 
+   <a href="https://www.tensorflow.org/">TensorFlow</a>, which let you merely
+   <em>declare</em> the network topology through enumerating its components,
+   Matcha allows more flexibility through dynamic flow. However, this
+   means that all components that the neural net uses must be stored
+   somethere so that they can be explicitly called later in your code.
+   For example, instantiating and calling a layer all at once inside
+   the <code class="language-plaintext highlighter-rouge">run</code> method <strong>would not work as expected in TensorFlow</strong>. Instead,
+   a new layer would be created in each <code class="language-plaintext highlighter-rouge">run</code> invokation. Therefore,
+   <strong>you must instantiate all layers before calling <code class="language-plaintext highlighter-rouge">run</code></strong>, e.g. from <code class="language-plaintext highlighter-rouge">init</code>
+   as private class members.</p>
+
+<p>An example will follow. We will create a custom <code class="language-plaintext highlighter-rouge">FcResNet</code> class using the
+<code class="language-plaintext highlighter-rouge">Net</code> subclassing API. To demonstrate the flexibility of the subclassing
+API, the <code class="language-plaintext highlighter-rouge">FcResNet</code> class will implement automatic <em>residual connection</em>
+creation logic on fully connected <a href="nn/layers/fc"><code class="language-plaintext highlighter-rouge">nn::Fc</code></a> layers:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FcResNet</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Net</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="s">"relu"</span><span class="p">};</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">unary_fn</span><span class="o">&gt;</span> <span class="n">residual_blocks</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">output</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="s">"softmax"</span><span class="p">};</span>
+
+  <span class="kt">void</span> <span class="nf">createResBlock</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="n">init</span><span class="p">(</span><span class="k">const</span> <span class="n">tensor</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+  <span class="n">tensor</span> <span class="n">run</span><span class="p">(</span><span class="k">const</span> <span class="n">tensor</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Now, let’s implement the methods. We will start by <code class="language-plaintext highlighter-rouge">createResBlock</code> logic.
+There are many ways to do this. We will be using a value-capturing C++ lambda:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">FcResNet</span><span class="o">::</span><span class="n">createResBlock</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">unary_fn</span> <span class="n">block</span> <span class="o">=</span> <span class="p">[</span>
+                      <span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="s">"relu"</span><span class="p">},</span>
+                      <span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">200</span><span class="p">,</span> <span class="s">"relu"</span><span class="p">},</span>
+                      <span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="s">"none"</span><span class="p">}</span>
+                   <span class="p">]</span>
+                   <span class="p">(</span><span class="k">const</span> <span class="n">tensor</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="k">return</span> <span class="n">fc3</span><span class="p">(</span><span class="n">fc2</span><span class="p">(</span><span class="n">fc1</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span> <span class="o">+</span> <span class="n">a</span><span class="p">;</span>
+                   <span class="p">};</span>
+
+  <span class="n">residual_blocks</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">block</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now, we will define the <code class="language-plaintext highlighter-rouge">init</code> function. We will let it create 3 residual blocks:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">FcResNet</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="k">const</span> <span class="n">tensor</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">createResBlock</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And at last, we create the <code class="language-plaintext highlighter-rouge">run</code> function. Since we’ve done most of the
+hard work in <code class="language-plaintext highlighter-rouge">createResBlock</code> and <code class="language-plaintext highlighter-rouge">init</code>, this function can merely 
+sequentially call the stored residual blocks, with some pre-processing
+and post-processing:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">FcResNet</span><span class="o">::</span><span class="n">run</span><span class="p">(</span><span class="k">const</span> <span class="n">tensor</span><span class="o">&amp;</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">tensor</span> <span class="n">feed</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">block</span><span class="o">:</span> <span class="n">residual_blocks</span><span class="p">)</span>
+    <span class="n">feed</span> <span class="o">=</span> <span class="n">block</span><span class="p">(</span><span class="n">feed</span><span class="p">);</span>
+  
+  <span class="k">return</span> <span class="n">output</span><span class="p">(</span><span class="n">feed</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That’s it! We can proceed to instantiating our <code class="language-plaintext highlighter-rouge">FcResNet</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FcResNet</span> <span class="n">net</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>… and <a href="#training-neural-networks">training</a> it.</p>
+
+<h2 id="functional-api">Functional API</h2>
+
+<p>The functional API is midway between the sequential and the subclassing API.
+Use it when the network you want to create does not have a sequential 
+topology but is still small enough. This can be done using a lambda or
+by wrapping a normal function. We will make use of a C++ lambda with
+C++ <em>static variables</em> storing our layers (remember, Matcha is not <em>static</em> itself!)
+to create a simple net with one gated block, similar to those used in 
+<a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">recurrent neural networks</a> (RNNs):</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Net</span> <span class="n">net</span> <span class="o">=</span> <span class="p">[](</span><span class="n">tensor</span> <span class="n">feed</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="k">auto</span> <span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="s">"relu"</span><span class="p">};</span>
+  <span class="k">static</span> <span class="k">auto</span> <span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span> <span class="s">"tanh"</span><span class="p">};</span>
+  <span class="k">static</span> <span class="k">auto</span> <span class="n">output</span> <span class="o">=</span> <span class="n">nn</span><span class="o">::</span><span class="n">Fc</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="s">"softmax"</span><span class="p">};</span>
+
+  <span class="n">feed</span> <span class="o">=</span> <span class="n">fc1</span><span class="p">(</span><span class="n">feed</span><span class="p">)</span> <span class="o">*</span> <span class="nf">fc2</span><span class="p">(</span><span class="n">feed</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nf">output</span><span class="p">(</span><span class="n">feed</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The network can now be <a href="#training-neural-networks">trained</a>.</p>
+
+<h2 id="training-neural-networks">Training neural networks</h2>
+
+<p>Having our network logic declared, we can proceed to training it. 
+We will to this in 4 steps.</p>
+
+<h3 id="step-1-choose-a-loss-function">Step 1: Choose a loss function</h3>
+
+<p>First, we must choose a <code class="language-plaintext highlighter-rouge">Loss</code> function for our network. 
+Loss functions set quantitative goals for artificial neural networks and
+tell them how close or far they are. Choose your loss function based on 
+what you expect from the network. Common losses are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">mse</code> - Mean Squared Error loss for <strong>regression</strong>-based tasks</li>
+  <li><code class="language-plaintext highlighter-rouge">nn::Nll</code> - Negative Log Likelihood wrapping binary and categorical
+ distribution cross-entropies for <strong>classification</strong>-based tasks</li>
+</ul>
+
+<p>… or, create your own loss! In Matcha, this is as simple as defining
+a normal binary function, the first argument being the batch of <code class="language-plaintext highlighter-rouge">expected</code> 
+outputs, the second argument being the batch of <code class="language-plaintext highlighter-rouge">predicted</code> outputs. Note
+however, that the loss function <strong>must be differentiable</strong>.</p>
+
+<p>Let’s suppose we want to train a regressive model:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">net</span><span class="p">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">mse</span><span class="p">;</span>     
+</code></pre></div></div>
+
+<h3 id="step-2-choose-a-neural-network-optimizer">Step 2: Choose a neural network optimizer</h3>
+
+<p>The loss we have just chosen sets a goal for our neural network.
+An <code class="language-plaintext highlighter-rouge">Optimizer</code> uses the gradients of that loss with respect to (w.r.t.)
+our net’s trainable parameters to minimize the loss and approach to 
+the goal. By default, <code class="language-plaintext highlighter-rouge">Net</code> uses the stochastic
+<a href="https://arxiv.org/abs/1412.6980">Adaptive Moment Estimation (Adam)</a>
+algorithm (<code class="language-plaintext highlighter-rouge">nn::Adam</code>), 
+which has proven to be the most efficient for the 
+vast majority of uses.
+For this reason, we <strong>can usually skip this step altogether</strong>.</p>
+
+<h3 id="step-3-prepare-a-dataset">Step 3: Prepare a dataset</h3>
+
+<p>This step may equally important to designing the entire neural net.
+It involves collecting data from the internet or otherwise, formatting
+it, and assembling it into a single dataset. We will show here only
+how to import an already prepared dataset and perform some pre-processing.
+For more, refer to the dataset documentation.</p>
+
+<p>First, we have to load data from this disk. In this case, we will load the 
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html#sklearn.datasets.fetch_california_housing">Sklearn California housing</a>
+dataset from a <code class="language-plaintext highlighter-rouge">.csv</code> file. The dataset contains 20640 instances with
+just 8 features and a single real-valued target for regression:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Dataset</span> <span class="n">california_housing</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">"california_housing.csv"</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">california_housing</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>            
+
+<span class="c1">// 20640</span>
+</code></pre></div></div>
+
+<p>Next, we may want to make some adjustments to the dataset.
+Notably, if every feature is represented as a separate scalar tensor,
+we need to create a single input tensor by <em>mapping</em> the dataset.
+Dataset pipelines make it possible to work with huge amounts of data
+(possibly billions of instances) in a memory-efficient manner:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">california_housing</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">.</span><span class="n">map</span><span class="p">([](</span><span class="n">Instance</span><span class="o">&amp;</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Instance</span> <span class="n">mapped</span><span class="p">;</span>
+  <span class="n">mapped</span><span class="p">[</span><span class="s">"y"</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">"Target"</span><span class="p">];</span>
+  <span class="n">mapped</span><span class="p">[</span><span class="s">"x"</span><span class="p">]</span> <span class="o">=</span> <span class="n">stack</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s">"MedInc"</span><span class="p">],</span>      <span class="c1">// median income in block group</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"HouseAge"</span><span class="p">],</span>    <span class="c1">// median house age in block group</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"AveRooms"</span><span class="p">],</span>    <span class="c1">// average number of rooms per household</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"AveBedrms"</span><span class="p">],</span>   <span class="c1">// average number of bedrooms per household</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"Population"</span><span class="p">],</span>  <span class="c1">// block group population</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"AveOccup"</span><span class="p">],</span>    <span class="c1">// average number of household members</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"Latitude"</span><span class="p">],</span>    <span class="c1">// block group latitude</span>
+                      <span class="n">i</span><span class="p">[</span><span class="s">"Longitude"</span><span class="p">]);</span>  <span class="c1">// block group longitude</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">mapped</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Now when that’s done, we have the training logic ready.</p>
+
+<h3 id="step-4-fit">Step 4: Fit!</h3>
+
+<p>Finally, we can fit our model. By default, the fitting process will be
+logged by the <code class="language-plaintext highlighter-rouge">nn::Logger</code> net callback. To disable it, simply clear
+the net’s callbacks:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">net</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Alternatively, you can add more callbacks.</p>
+
+<p>To fit our dataset, simply:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">net</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">california_housing</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>If we have the <code class="language-plaintext highlighter-rouge">nn::Logger</code> enabled, the fitting process will be reported:</p>
+
+<p><img src="https://matcha-ai.github.io/matcha/nn/fit.gif" alt="img" /></p>
+
+<p>We can specify the number of epochs the fitting algorithm shall perform:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">epochs</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">net</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">california_housing</span><span class="p">,</span> <span class="n">epochs</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Alternatively, we can perform just one epoch explicitly
+(equivalent to <code class="language-plaintext highlighter-rouge">epochs = 1</code>):</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">net</span><span class="p">.</span><span class="n">epoch</span><span class="p">(</span><span class="n">california_housing</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>If we want the most control over iterating through the dataset instances,
+we can even schedule each training step individually:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">california_housing</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Instance</span> <span class="n">i</span> <span class="o">=</span> <span class="n">california_housing</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+  <span class="n">net</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="neural-network-predictions">Neural network predictions</h2>
+
+<p>If we have designed the network correctly, it will be able to 
+<em>generalize</em> what it has been trained. This means we can now use it to 
+predict novel data. In this sense, the <code class="language-plaintext highlighter-rouge">Net</code> class behaves as a completely
+normal function. It accepts a batch of input data and returns a batch
+of respective predictions:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="n">data</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">"novel_housnig_context.csv"</span><span class="p">);</span>
+<span class="n">tensor</span> <span class="n">pred</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Neural Network predictions are:"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pred</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Note that the neural network accepts <em>a batch</em> of inputs,
+   not a <em>single</em> input. Confusing these two can lead to errors
+   or non-sensical results. To easily convert a single <code class="language-plaintext highlighter-rouge">input</code> to
+   a single-input batch, use the <code class="language-plaintext highlighter-rouge">stack</code> operation. This will expand
+   the input dimensionality by batch axis while retaining the 
+   original shape: <br />
+   <code class="language-plaintext highlighter-rouge">tensor batched_input = stack(input);</code></p>]]></content><author><name></name></author><summary type="html"><![CDATA[In my first university year, I was motivated by the lectures of Milan Straka, an amazing teacher at MFF, to delve (deeper than I should have, in retrospect) into the lower-levels of machine learning. Due to being a sperger when it comes to blackboxes, I decided to start implementing my own Numpy/Tensorflow, fully in C++, which I am going to introduce in this post.]]></summary></entry></feed>

@@ -1,9 +1,7 @@
 body {
-	background: black;
 	color: #c5c5c5;
 	margin: 0;
 	padding: 0;
-	font-family: 'Hanken Grotesk', sans-serif;
 	/* -ms-overflow-style: none; */
 	/* scrollbar-width: none; */
 }
@@ -33,6 +31,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
+    background: black;
 }
 
 @keyframes reveal {
@@ -117,59 +116,3 @@ body {
 }
 
 .pseudonym a:hover {}
-
-.wall {
-	margin: 4rem;
-    column-count: 1;
-    column-gap: 3rem;
-}
-
-@media (min-width: 800px) {
-    .wall {
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-}
-
-.wall section {
-	padding: 1rem 1rem 0rem 1rem;
-	line-height: 150%;
-	text-align: justify;
-    display: inline-block;
-    width: 100%;
-}
-
-.wall section h2 {
-	width: 100%;
-	border-bottom: 1px solid grey;
-    padding-bottom: 0.5rem;
-}
-
-.wall section a {
-	color: #858585;
-	text-decoration: none;
-	font-weight: 600;
-}
-
-.wall section a::after {
-	content: " [?] ";
-	font-size: 50%;
-	vertical-align: top;
-}
-
-.wall section a:hover {}
-
-footer {
-	padding: 1rem 5rem 1rem 5rem;
-	height: 1rem;
-	color: #858585;
-}
-
-footer .pgp-fingerprint {
-	font-family: 'Roboto Mono', monospace;
-	float: left;
-}
-
-footer .copyright {
-	float: right;
-}

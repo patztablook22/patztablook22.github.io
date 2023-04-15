@@ -1,8 +1,13 @@
+---
+---
+<!DOCTYPE html>
 <html>
 	<head>
+
+        {%- include head.html -%}
         <title>patztablook22</title>
-        <link rel="icon" type="image/x-icon" href="media/img/favicon.ico">
-	    <link rel="stylesheet" href="media/css/main.css" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+	    <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +20,19 @@
 
         <meta property="og:title" content="patztablook22" />
         <meta property="og:description" content="Hi." />
-        <meta property="og:image" content="https://patz.cz/media/img/banner.jpeg" />
+        <meta property="og:image" content="https://patz.cz/assets/img/banner.jpeg" />
         <meta property="og:image:alt" content="patztablook22" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="600" />
         <meta property="og:type" content="object" />
         <meta property="og:url" content="https://patz.cz" />
 
-        <meta name="twitter:image:src" content="https://patz/cz/media/img/banner.jpeg" />
+        <meta name="twitter:image:src" content="https://patz/cz/assets/img/banner.jpeg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="patztablook22" />
         <meta name="twitter:description" content="Hi." />
 
-        <script src="media/js/main.js"></script>
+        <script src="assets/js/main.js"></script>
 	</head>
 	<body>
 		<div class="pseudonym noselect unrevealed">
@@ -43,11 +48,13 @@
 
 		<div class="profile-pic noselect">
             <div class="img-container">
-                <img id="bg-img" class="unrevealed" src="media/img/bg/3.jpeg" />
+                <img id="bg-img" class="unrevealed" src="assets/img/bg/3.jpeg" />
             </div>
         </div>
 
-        <div class="wall">
+        <main class="page-content" aria-label="Content">
+          <div class="wrapper">
+
             <section id="about">
                 <h2>I am</h2>
 
@@ -134,11 +141,10 @@
                 </ul>
 
             </section>
-        </div>
+          </div>
+        </main>
 
-        <footer>
-            <span class="pgp-fingerprint">6837 6A4E 9548 F076 03C3</span>
-            <span class="copyright">&copy; Patrik Zavoral 2023</span>
-        </footer>
+        {%- include footer.html -%}
+
 	</body>
 </html>

@@ -1,0 +1,118 @@
+body {
+	color: #c5c5c5;
+	margin: 0;
+	padding: 0;
+	/* -ms-overflow-style: none; */
+	/* scrollbar-width: none; */
+}
+
+.noselect {
+    -webkit-user-select: none;
+	/* Chrome all / Safari all */
+	-moz-user-select: none;
+	/* Firefox all */
+	-ms-user-select: none;
+	/* IE 10+ */
+	user-select: none;
+	/* Likely future */
+
+}
+
+.profile-pic {
+    border-bottom: 1rem solid #0b0b0b;
+}
+
+.profile-pic .img-container {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: black;
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.img-container img {
+    display: inline;
+    height: 100%;
+    filter: blur(3.1vh) brightness(0.89);
+    margin: 0;
+    padding: 0;
+    margin-left: calc(50vw - 50vh - 3vh);
+}
+
+.unrevealed {
+    opacity: 0;
+}
+
+.to-reveal {
+    transition: opacity 1s !important;
+}
+
+.revealed {
+    opacity: 1 !important;
+}
+
+.pseudonym {
+	height: 100vh;
+	position: relative;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    padding-top: 0;
+}
+
+.pseudonym .center {
+	text-align: center;
+}
+
+.pseudonym h1 {
+	font-family: 'Roboto Mono', monospace;
+	font-size: min(10vh, calc(100vw / 10));
+	color: #ddd;
+	padding: 0;
+	margin: 0;
+}
+
+@keyframes blinkyBlink {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 0}
+}
+
+.pseudonym h1:after {
+    display: inline-block;
+    width: 1rem;
+    content: '█';
+    margin-left: 0.5rem;
+    opacity: 0;
+    animation: blinkyBlink 1.5s infinite;
+}
+
+.pseudonym .links {
+	letter-spacing: 0.5rem;
+	/* font-family: 'Roboto Mono', monospace; */
+}
+
+.pseudonym a {
+	color: #aaa;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.pseudonym a:hover {}

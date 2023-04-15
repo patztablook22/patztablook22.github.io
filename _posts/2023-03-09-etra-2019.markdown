@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "ETRA 2019 challenge report"
+date:   2023-03-09 01:45:01 +0100
+---
+
+Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed 
+to check for *one-to-one*
+search correspondence in *puzzle* type experiments and for heterogeneities
+of visual attention with respect to the target area color. For *puzzle*
+compared to *non-puzzle* image types, left image attention
+is found to be a significant predictor of the right image attention,
+suggesting one-to-search search patterns. The observed color heterogeneities,
+e.g. RGB red or HSV value are discussed.
+
+---
+
+[Link to pdf](https://drive.google.com/file/d/1-H__EVVezoV0aEFNOtTsKUkw3c74Ts6V/view?usp=share_link)
+
+Semestral work for the [Informatics and Cognitive Sciences](http://csng.mff.cuni.cz/ikv1.html)
+MFF course.

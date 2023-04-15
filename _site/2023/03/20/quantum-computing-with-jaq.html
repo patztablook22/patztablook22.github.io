@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Quantum computing with Jaq | patztablook22</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Quantum computing with Jaq" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Jaq is a Quantum computing engine for Java that focuses on usage simplicity and modularity. It provides an abstraction of a quantum computer, the Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently of the underlying QVM implementation. I have written a quantum computer simulator that uses sparse linear algebra." />
+<meta property="og:description" content="Jaq is a Quantum computing engine for Java that focuses on usage simplicity and modularity. It provides an abstraction of a quantum computer, the Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently of the underlying QVM implementation. I have written a quantum computer simulator that uses sparse linear algebra." />
+<link rel="canonical" href="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html" />
+<meta property="og:url" content="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html" />
+<meta property="og:site_name" content="patztablook22" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-03-20T00:45:01+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Quantum computing with Jaq" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-03-20T00:45:01+00:00","datePublished":"2023-03-20T00:45:01+00:00","description":"Jaq is a Quantum computing engine for Java that focuses on usage simplicity and modularity. It provides an abstraction of a quantum computer, the Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently of the underlying QVM implementation. I have written a quantum computer simulator that uses sparse linear algebra.","headline":"Quantum computing with Jaq","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html"},"url":"http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="patztablook22" /><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body><header class="site-header" role="banner">
+
+  <div><a class="site-title" rel="author" href="/about/">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/62576875?v=4" />
+        patztablook22</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/">Activity</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Quantum computing with Jaq</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-03-20T00:45:01+00:00" itemprop="datePublished">Mar 20, 2023
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Jaq is a Quantum computing engine for Java that focuses on usage simplicity
+and modularity. It provides an abstraction of a quantum computer, the
+Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently
+of the underlying QVM implementation. I have written a quantum computer
+simulator that uses sparse linear algebra.</p>
+
+<p>For details, see the project <a href="https://start.duckduckgo.com/">repository</a>.</p>
+
+<p align="center">
+<img src="https://github.com/patztablook22/jaq/raw/main/src/main/java/io/github/patztablook22/jaq/doc-files/jaq.png" style="padding: 2rem; height: 22em" />
+</p>
+
+<h2 id="lifecycle">Lifecycle</h2>
+
+<p>Jaq is based on a simple life cycle:</p>
+
+<ol>
+  <li>Build a quantum circuit.</li>
+  <li>Choose a QVM (quantum virtual machine) backend.</li>
+  <li>Run the circuit.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Program</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    
+    <span class="c1">// Step 1. Build a quantum circuit.</span>
+    <span class="kt">var</span> <span class="n">circ</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Qcircuit</span><span class="o">()</span> <span class="o">{{</span>
+      <span class="n">hadamard</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+      <span class="n">cnot</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+      <span class="n">measure</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">}};</span>
+    
+    <span class="c1">// Step 2. Choose a QVM backend.</span>
+    <span class="nc">Qvm</span> <span class="n">backend</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleSimulator</span><span class="o">();</span>
+    
+    <span class="c1">// Step 3. Run the circuit.</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">measurements</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">circ</span><span class="o">);</span>
+  
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="quantum-circuits">Quantum circuits</h2>
+
+<p>Jaq provides <code class="language-plaintext highlighter-rouge">Qcircuit</code>, a convenient API for design, inspection, and composition of Quantum circuits.</p>
+
+<p>A compact way of defining a quantum circuit is using anynomous subclassing and the initializer block, like in the example above:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">circuit</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Qcircuit</span><span class="o">()</span> <span class="o">{{</span>
+
+  <span class="cm">/* superposition */</span>
+  <span class="n">hadamard</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+       
+  <span class="cm">/* entanglement */</span>
+  <span class="n">cnot</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+  <span class="cm">/* measurement */</span>
+  <span class="n">measure</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+  <span class="n">measure</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+
+<span class="o">}};</span>
+</code></pre></div></div>
+
+<p>For a more fine control, <code class="language-plaintext highlighter-rouge">Qcircuit</code> can be simply inherited by a named subclass, which can e.g. automate the construction of the quantum circuit based on some parameters:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyCircuit</span> <span class="kd">extends</span> <span class="nc">Qcircuit</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nf">MyCircuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">qubits</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">qubits</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+      <span class="n">hadamard</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
+    <span class="cm">/* ... */</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The circuits can be then run on any implementation of the Quantum virtual machine. The QVM is an abstraction of a quantum computer. The backend implementing that abstraction can be a custom quantum computer, a simulator, or a quantum computer availble over a public service.</p>
+
+<p>Jaq is designed to be as modular as possible. New backends can be implemented by easily by hand. It is possible to build application-specific quantum computing libraries based on Jaq, utilizing the flexible <code class="language-plaintext highlighter-rouge">Qcircuit</code> API.</p>
+
+<p>Especially when debugging, it is often useful to see the quantum circuit’s diagram. This can be done simply by:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Qcircuit</span> <span class="n">circ</span> <span class="o">=</span> <span class="cm">/* ... */</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">circ</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Output for the circuit in the example code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>q0:  ─H─┬───
+q1:  ───+─M─
+c0:  ═════╚═
+</code></pre></div></div>
+
+<p>Or a more complex circuit, with some nested subcircuits:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>q0:  ─H───────────────────┌──────────┐─
+q1:  ─H─Rx─┬─X────────────┤0  Inner2 ├─
+q2:  ─H────┊─┬────────M─X─┤1         ├─
+q3:  ─H────+─+────────║─X─└──────────┘─
+q4:  ─┌─────────────┐─║────────────────
+q5:  ─┤0  InnerA... ├─║────────────────
+c0:  ═╡0            ╞═║════════════════
+c1:  ═└─────────────┘═╚════════════════
+</code></pre></div></div>
+
+<h2 id="qvm-backends">QVM backends</h2>
+
+<p>Jaq quantum circuits are backend-agnostic. A <code class="language-plaintext highlighter-rouge">Qvm</code> implementation is expected to provide the full functionality of a quantum computer, constrained only by the resources available. Namely:</p>
+
+<ul>
+  <li>Accepting circuits with any quantum nodes.</li>
+  <li>Implicitly or explicitly inlining all nested subcircuits.</li>
+  <li>Never modifying the given quantum circuits. All intermediate representations should be kept separately.</li>
+  <li>Transpiling not directly supported (e.g. more complex) quantum operations into the backend’s universal set.</li>
+  <li>Optimizing the resulting flow graph.</li>
+  <li>Caching it for efficient reuse.</li>
+</ul>
+
+<h2 id="the-simulator-theory">The simulator theory</h2>
+
+<p>The theory behind quantum computing is roughly available at many places online.
+To get started, I recommend <a href="https://qiskit.org/learn/">Qiskit learn</a>.
+However, as I figured, these resources go only as deep as 1 or 2 qubit
+circuits. When implementing an actualy simulator, this is not nearly enough.</p>
+
+<p>One of the challenges that I faced was the following. Consider a quantum
+circuit with two qubits. The CNOT gate has a very simple formulation
+as the unitary matrix:</p>
+
+<p>\[ \mathop{CNOT} = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ \end{pmatrix}. \]</p>
+
+<p>The computation then consists of merely applying this operator on the quantum state vector:</p>
+
+<p>\[ \ket{\psi’} = \mathop{CNOT} \ket{\psi}. \]</p>
+
+<p>However, this trivial case doesn’t generalize to quantum circuits with more qubits. For example,
+let’s have a circuit with 10 qubits, and we want to flip the 4th qubit depending
+on the 7th qubit. How does one achieves this? Should we mirror the matrix,
+stretch it, fill it with zeros, and pray?</p>
+
+<p>The solution to this is to be sought in a bit deeper understanding
+of linear algebra, especially of the tensor product and the Kronecker product.
+The above 2-qubit \( \mathop{CNOT} \) matrix can be expressed as:</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2} + \ket{1} \bra{1} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} . \]</p>
+
+<p>A way to think about it may be as an implicit if condition simulated
+using the Hilbert space basis. From the way
+matrix multiplication works, the matrix \( \ket{a} \bra{b} \) matches 
+the basis vector \( \ket{b} \) on the input, and transforms it into
+\( \ket{a} \) on the output, i.e.</p>
+
+<p>\[ (\ket{a} \bra{b}) \cdot \ket{b} = \ket{a} \cdot \braket{a|b} = \ket{a}. \]</p>
+
+<p>And in the case the wrong input basis vector is given, it returns the zero vector \( \mathbf{0} \):</p>
+
+<p>\[ (\ket{a} \bra{b}) \cdot \ket{c} = \ket{a} \cdot \braket{a|c} = \ket{a} \cdot 0 = \mathbf{0}. \]</p>
+
+<p>Moving a layer up, 
+\( \ket{0} \bra{0} \otimes I_{2} \)
+applies the discussed “if condition” matching the 0 basis in the first qubit (and returning
+it back) and it 
+additionally ties (thanks to the Kronecker product) the conditioned identity operator on the second qubit to it. 
+Similarly the matrix</p>
+
+<p>\[ \ket{1} \bra{1} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} ) \]</p>
+
+<p>applies the “if condition” matching the 1 basis in the first qubit (and returning
+it back again) and ties the conditioned “swap” operator on the second qubit to it. 
+Finally, by summing the two, we obtain the unitary CNOT matrix</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2} + \ket{1} \bra{1} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} . \]</p>
+
+<p>In our analogy, the first matrix in the addition is active if (and only if) the first
+qubit is 0. In that case it leaves it, and it also leaves the second qubit
+as it is. In case the first qubit is 1, the second matrix is activated.
+It again keeps the first qubit as it is, but now, instead of keeping the other
+qubit, it swaps it.</p>
+
+<p>In case we want to swap the second qubit based on the first one,
+we simply swap the kronecker product operands:</p>
+
+<p>\[ \mathop{CNOT}’ = I_{2} \otimes \ket{0} \bra{0} + \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes \ket{1}\bra{1}. \]</p>
+
+<p>Now, instead of “pattern-matching” on the first qubit, we do it on the second one,
+and based on that, we either keep or swap the first qubit.</p>
+
+<p>With this in mind, we are ready to generalize the CNOT gate to an arbitrary
+number of qubits. First, suppose there are M other qubits between
+the controlling qubit and the target one. We want the CNOT gate not to 
+act on these at all. Well, then we use the Kronecker product to insert
+the appropriate identity matrices into what we already know:</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2^M} \otimes I_{2} + \ket{1} \bra{1} \otimes I_{2^M} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} . \]</p>
+
+<p>\[ \mathop{CNOT}’ = I_{2} \otimes I_{2^M} \otimes \ket{0} \bra{0} + \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes I_{2^M} \otimes \ket{1}\bra{1}. \]</p>
+
+<p>Here, we use the fact the identity matrix \( I_2 \) doesn’t change the qubit it acts on and
+that 
+\[I_2^{\otimes M} = I_{2^M}. \]</p>
+
+<p>The final step to the complete formula is considering what to do, when
+there are some L qubits before and N qubits after the ones we’re focusing on. We
+again want the CNOT gate not to act on them at all, so we again use the
+identity matrix trick:</p>
+
+<p>\[ \mathop{CNOT} = I_{2^L} \otimes \ket{0} \bra{0} \otimes I_{2^M} \otimes I_{2} \otimes I_{2^N} + I_{2^L} \otimes \ket{1} \bra{1} \otimes I_{2^M} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes I_{2^N}. \]</p>
+
+<p>\[ \mathop{CNOT}’ = I_{2^L} \otimes I_{2} \otimes I_{2^M} \otimes \ket{0} \bra{0} \otimes I_{2^N} + I_{2^L} \otimes \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} \otimes I_{2^M} \otimes \ket{1}\bra{1} \otimes I_{2^N}. \]</p>
+
+<p>It’s actually that simple! Still I found a bit frustrating
+it’s nowhere to find online. Moreover, one can use similar reasoning 
+to find the general formulas for the other quantum gates too.</p>
+
+<h2 id="putting-it-to-work">Putting it to work</h2>
+
+<p>After lots of experimenting, I came to the conclusion the most efficient
+way to actually implement all that linear algebra is using sparse arithmetic.
+The reason for it is that the dimension of the underlying Hilbert space increases
+exponentially with the number of qubits:</p>
+
+<p>\[ \mathop{dim} H = 2^Q \]</p>
+
+<p>This already means we will run out of memory quite quickly when we
+start approaching about 30 qubits, because the vector will be too big. But we also
+need to have the transformation matrices, which are <em>quadratically</em> big!</p>
+
+<p>Luckily, most of the values in the matrices turn out to be 0. This can be used 
+to store and manipulate only the nonzero entries of the matrices.
+For all the operations needed (matrix-vector product, Kronecker product, 
+matrix addition), this leads to <em>linear time complexity</em> with respect
+to the number of nonzero entries.</p>
+
+<p>In retrospect, it is quite obvious to me I should have used sparse arithmetic. 
+But I wanted to be really sure of it
+before I started writing the hundreds of lines of code it necessitates,
+so I spent some time e.g. plotting various matrix histograms to see whether
+it is indeed the optimal solution.</p>
+
+<p>Having the sparse linear algebra implemented, we can just take
+the CNOT formula that we discovered earlier:</p>
+
+<p>\[ \mathop{CNOT} = \ket{0} \bra{0} \otimes I_{2^M} \otimes I_{2} + \ket{1} \bra{1} \otimes I_{2^M} \otimes  \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \\ \end{pmatrix} , \]</p>
+
+<p>and directly translate it to code (it would be analogous for \( \mathop{CNOT}’ \)):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Ket</span> <span class="nf">cnot</span><span class="o">(</span><span class="nc">Ket</span> <span class="n">state</span><span class="o">,</span> <span class="kt">int</span> <span class="n">controlQubit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">targetQubit</span><span class="o">,</span> <span class="kt">int</span> <span class="n">totalQubits</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">controlQubit</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">targetQubit</span> <span class="o">-</span> <span class="n">controlQubit</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">totalQubits</span> <span class="o">-</span> <span class="n">targetQubit</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+
+    <span class="n">val</span> <span class="n">kernel</span> <span class="o">=</span> <span class="nc">SparseOperator</span><span class="o">.</span><span class="na">basisKetbra</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">basisKetbra</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">yey</span><span class="o">(</span><span class="mi">2</span><span class="o">)));</span>
+
+    <span class="n">val</span> <span class="n">operator</span> <span class="o">=</span> <span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="n">kernel</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">kronecker</span><span class="o">(</span><span class="nc">SparseOperator</span><span class="o">.</span><span class="na">eye</span><span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">operator</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">state</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Voilà.</p>
+
+
+  </div><a class="u-url" href="/2023/03/20/quantum-computing-with-jaq.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">patztablook22</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+              Patrik Zavoral
+            </li><li><a class="u-email" href="mailto:patrik.zavoral@gmail.com">patrik.zavoral@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://www.twitter.com/"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username"></span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hi. I figured I am not nearly as narcissistic as I can. Therefore I made this website that precisely zero people  are ever going to give a fig about. If you&#39;re reading this, I literally don&#39;t believe you&#39;re a human person. Kindly enjoy your non-existence.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
