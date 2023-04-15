@@ -21,11 +21,11 @@
 title: patztablook22
 email: patrik.zavoral@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Hi. I figured I am not nearly
+  I figured I am not nearly
   as narcissistic as I can.
-  Therefore I made this website that precisely zero people 
+  Therefore I made this website precisely zero people 
   are ever going to give a fig about. If you're reading this, I literally don't
-  believe you're a human person. Kindly enjoy your non-existence.
+  believe you're a human being. Kindly enjoy your non-existence.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ""

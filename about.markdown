@@ -62,7 +62,6 @@ I like fractals.
 - Russian - basic to intermediate
 - C++ (11 and later) - fluent
 - Python 3 - fluent
-- Haskell - advanced
 - Java - advanced
 - Kotlin - basic to intermediate
 - C# - basic to intermediate

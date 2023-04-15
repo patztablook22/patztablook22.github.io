@@ -10,7 +10,7 @@ Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently
 of the underlying QVM implementation. I have written a quantum computer
 simulator that uses sparse linear algebra.
 
-For details, see the project [repository](https://start.duckduckgo.com/).
+For details, see the project [repository](https://github.com/patztablook22/jaq).
 
 {% raw %}
 
