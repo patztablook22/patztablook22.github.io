@@ -157,7 +157,6 @@ pre > code {
   margin-left: auto;
   padding-right: 30px;
   padding-left: 30px;
-  text-align: justify;
 }
 @media screen and (max-width: 800px) {
   .wrapper {
@@ -166,6 +165,15 @@ pre > code {
     padding-right: 15px;
     padding-left: 15px;
   }
+}
+
+.wrapper p {
+  text-align: justify;
+}
+.wrapper p.center {
+  text-align: center !important;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 /**
@@ -221,6 +229,31 @@ table td {
 
 .MathJax {
   overflow-x: auto;
+}
+
+.definition {
+  padding: 20.8px;
+  margin: 20.8px 0;
+  border: 1px solid #222224;
+  overflow-x: auto;
+}
+
+.example {
+  padding: 20.8px;
+  margin: 20.8px 0;
+  border: 1px solid #222224;
+  overflow-x: auto;
+}
+
+.theorem {
+  padding: 20.8px;
+  margin: 20.8px 0;
+  border: 1px solid #222224;
+  overflow-x: auto;
+}
+
+.theorem > .proof {
+  margin-top: 2em;
 }
 
 /**

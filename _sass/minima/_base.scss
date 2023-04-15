@@ -186,7 +186,6 @@ pre {
   padding-right: $spacing-unit;
   padding-left: $spacing-unit;
   @extend %clearfix;
-  text-align: justify;
 
   @include media-query($on-laptop) {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
@@ -196,7 +195,14 @@ pre {
   }
 }
 
-
+.wrapper p {
+  text-align: justify;
+  &.center {
+      text-align: center !important;
+      padding-top: 1em;
+      padding-bottom: 1em;
+  }
+}
 
 /**
  * Clearfix
@@ -263,4 +269,29 @@ table {
 
 .MathJax {
     overflow-x: auto;
+}
+
+.definition {
+    padding: 1.3 * $base-font-size;
+    margin: 1.3 * $base-font-size 0;
+    border: 1px solid $grey-color-dark2;
+    overflow-x: auto;
+}
+
+.example {
+    padding: 1.3 * $base-font-size;
+    margin: 1.3 * $base-font-size 0;
+    border: 1px solid $grey-color-dark2;
+    overflow-x: auto;
+}
+
+.theorem {
+    padding: 1.3 * $base-font-size;
+    margin: 1.3 * $base-font-size 0;
+    border: 1px solid $grey-color-dark2;
+    overflow-x: auto;
+}
+
+.theorem > .proof {
+    margin-top: 2em;
 }

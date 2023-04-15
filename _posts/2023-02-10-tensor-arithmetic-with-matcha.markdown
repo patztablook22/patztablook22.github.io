@@ -241,7 +241,7 @@ lambda(a: Float[3, 3], b: Float[3, 3]) -> Cfloat[3, 3] {
 Lambda flow can be represented as a directed acyclic multigraph. In make case,
 it will look like this:
 
-<p align="center" style="padding: 1rem; filter: invert(96%)">
+<p class="center" style="filter: invert(96%);">
 <img src="https://www.plantuml.com/plantuml/svg/NP513eCW44NtdCAbcdW1qpHjsaqNNRKNG46bHL4OclJsPPe9ehl9-myOyayEk0K_QiRoGskqiNMZlJoM9I_B8gkgOvQB8gkpcv0JAFZkjIPgxLPh2Sk2uGqq1-Kin9fsITfX-l0DMDx2glI9qgDoznhKh9CtXaGPKBcgZnAIuOD_g10-BP_SR5pW7V7NZlV4tpi-4DSxheYFOO5Nd7573gFNB9y86eGNxiA_3A5b-vSvOePNu6ZNGvPIjpsqHCmm-i_KpyZxK0KF5G5Mb5J3Jd8IeV8V" />
 </p>
 
@@ -263,7 +263,7 @@ lambda(a: Float[3, 3], b: Float[3, 3]) -> Cfloat[3, 3] {
 
 Visualized as following:
 
-<p align="center" style="padding: 1rem; filter: invert(96%)">
+<p class="center" style="filter: invert(96%);">
 <img src="https://www.plantuml.com/plantuml/svg/VP0z2iCm38LtdSAZOyW5GWafdJlr1F9FqeAS54SUSljAuA4KqksXzxvlqBGp5gwP0EmbRBILmLDDetFeN6VwVZGsT6OmrnX_5_vhSKv7fH_LSy70vueeYj1oKkIEd2k1ykq8McYSjR_XBhgvjKsRSKahevYVQXPB9NwzwG2x_5i2J6cDyeOF">
 </p>
 

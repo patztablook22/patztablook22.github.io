@@ -4,13 +4,8 @@ title: About
 permalink: /about/
 ---
 
-<div id="i-am-photo">
-    <img src="/assets/img/asdf.jpeg" />
-</div>
-
 # I am
 
-<div id="i-am-text">
 <p>
 ... a 21 y/o Artificial Intelligence student from Liberec, Czechia. Currently, I live in Prague,
 where I study at the <a href="https://www.mff.cuni.cz/">Department of Mathematics and Physics of the Charles University</a>. 
@@ -32,7 +27,6 @@ I prefer playing in a band to solo-playing. This is both my way to relax and my 
 <p>
 I like fractals.
 </p>
-</div>
 
 <br />
 

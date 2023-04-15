@@ -1,0 +1,179 @@
+---
+layout: post
+title: "Introduction to Category theory"
+series: Category theory
+---
+
+<p>
+Category theory is a branch of mathematics that has become renowed for 
+a seemingly occult level of abstraction. 
+It's caught the minds of many who see and seek the beauty in mathematics.
+<br />
+<br />
+In this series of posts, I shall attempt to lay out an understandable, 
+yet formally rigorous, introduction to category theory.
+</p>
+
+<hr />
+This article is work in progress!
+<hr />
+
+<p>
+To make things as <s>painful</s> challenging for me as possible,
+the prerequisite to the series is <b>only a decent college-level mathematics</b>.
+However, I hope to engage the intellect of a knowledgable university 
+student too.
+</p>
+
+<p>
+Throughout this series, I will be using English, and,
+even at unexpected times, mathematical logic, and various diagrams. 
+I make no distinction between those, as they are all just different languages,
+some more suitable in certain contexts than others.
+Yet, I will attempt to make the series as linear and story-like as a book.
+</p>
+
+<h2>History and motivations</h2>
+
+<p>
+During the 20th century, mathematics has undergone perhaps the greatest
+transformation in history. The same way zero wasn't understood by the
+ancient Summerians, Romans, or Arabs, the humankind was unaware of
+the existence of multiple infinities for the long centuries to come. 
+For example, given
+the natural numbers, the integers, the rational numbers, and the real numbers:
+
+\begin{align}
+\mathbb{N} &= \{1, 2, 3, 4, ...\} \\
+\mathbb{Z} &= \{..., -2, -1, 0, 1, 2, 3, 4, ...\} \\
+\mathbb{Q} &= \left\{-\frac{1}{2}, 0, \frac{3}{2}, \frac{4}{6}, 3, ...\right\} \\
+\mathbb{R} &= \left\{..., -19.3, -\frac{\sqrt{2}}{2}, 0.1, \pi, ...\right\}, \\
+\end{align}
+
+One would say all of sets have the same size of \( \infty \). They are
+not finite. So they must be infinite.
+</p>
+
+<p>
+It was George Cantor, who first showed there is an enormous diversity
+of infinities. In fact, there is no less of them than the natural numbers 
+themselves!
+</p>
+
+<p>
+A key problem is in how should we determine whether one set is larger
+than another. 
+For a simple warm-up let's formulate our first theorem.
+</p>
+
+<div class="theorem">
+<b>Theorem 1.</b>
+\( |\mathbb{N}| = |\mathbb{Q}| \). Rather underwhelming, right?
+    <div class="proof">
+        <i>Proof.</i>
+        asdfsd
+    </div>
+</div>
+
+<p>
+On the other hand, the real numbers are strictly larger than natural numbers,
+and, in turn, also larger than the rational numbers!
+</p>
+
+<div class="theorem">
+<b>Theorem 2.</b>
+\( |\mathbb{R}| > |\mathbb{N}| \).
+
+    <div class="proof">
+        <i>Proof.</i>
+        asdfsd
+    </div>
+</div>
+
+<p>
+Ok ok cool. But let's go a bit further, a bit more general. 
+Given any set \( S \), let's
+find another set, that is guaranteed to be strictly larger than \( S \).
+That way, we could iterate this process of finding greater and greater
+sets and infinitum.
+</p>
+
+<p>
+As we have seen in \( \mathbb{Z} \) vs. \( \mathbb{N} \), simply "doubling"
+the elements (or in fact simply N-copying) the elements doesn't help. 
+Allowing us to even multply the number of items by of a set by itself
+won't help too, as witnessed by the poor little \( \mathbb{Q} \).
+</p>
+
+<p>
+Do you remember the power set? The set containing all subsets of \( S \)?
+
+<div class="definition">
+    <b>Definition.</b> \( \mathcal{P}(S) = \{ R \subset S \} \).
+    <br />
+    <br />
+
+    E.g. \( \mathcal{P}(\{1, 2, 3\}) = \{\emptyset, \{1\}, \{2\}, \{3\},
+    \{1, 2\}, \{2, 3\}, \{1, 3\}, \{1, 2, 3\} \} \).
+
+
+    <br />
+    <br />
+    <b>Notation.</b> \( 2^S = \mathcal{P}(S) \).
+    This results in the elegant statement that, so far for finite sets,
+    \[
+        |2^S| = 2^|S|.
+    \]
+</div>
+
+It turns out this is just right. To prove that, we will use a more
+general version of Cantor's real number argument:
+
+<div class="theorem">
+<b>Theorem (Cantor's theorem).</b>
+\( |\mathcal{P}(S)| > |S| \).
+
+    <div class="proof">
+        <i>Proof.</i>
+        asdfsd
+    </div>
+</div>
+
+Now this is truly revolutionary. This means, we can now take the smallest
+infinite set we know of - the natural numbers, and recursively get
+larger and larger and larger sets! Look!
+</p>
+
+\begin{align}
+    S_0 &= \mathbb{N} \\
+    S_1 &= 2^{S_0} = 2^\mathbb{N} \\
+    S_2 &= 2^{S_1} = 2^{2^\mathbb{N}} \\
+    S_3 &= 2^{S_2} = 2^{2^{2^\mathbb{N}}} \\
+    & \hspace{3mm} \vdots \\
+    S_{n+1} &=  2^{S_n}
+\end{align}
+
+<p>
+The sizes of these sets are so important they have a name. We call them
+aleph zero (aleph is the first letter in the Hebrew alphabet), aleph one, 
+aleph two, etc.:
+
+<div class="definition">
+    <b>Definition.</b>
+    \begin{align}
+        \aleph_0 &= |\mathbb{N}| \\
+        \aleph_1 &= 2^{\aleph_0} = 2^{|\mathbb{N}|} \\
+        \aleph_2 &= 2^{\aleph_1} = 2^{2^{|\mathbb{N}|}} \\
+        \aleph_3 &= 2^{\aleph_2} = 2^{2^{2^{|\mathbb{N}|}}} \\
+        & \hspace{3mm} \vdots \\
+        \aleph_{n+1} &=  2^{\aleph_n}
+    \end{align}
+</div>
+
+</p>
+
+
+
+<h2>Definition</h2>
+
+\[asdfas\lt; \]

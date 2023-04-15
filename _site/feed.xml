@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-04-15T06:36:37+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">patztablook22</title><subtitle>I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people  are ever going to give a fig about. If you&apos;re reading this, I literally don&apos;t believe you&apos;re a human being. Kindly enjoy your non-existence.</subtitle><entry><title type="html">Quantum computing with Jaq</title><link href="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html" rel="alternate" type="text/html" title="Quantum computing with Jaq" /><published>2023-03-20T00:45:01+00:00</published><updated>2023-03-20T00:45:01+00:00</updated><id>http://localhost:4000/2023/03/20/quantum-computing-with-jaq</id><content type="html" xml:base="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html"><![CDATA[<p>Jaq is a Quantum computing engine for Java that focuses on usage simplicity
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-04-15T22:13:25+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">patztablook22</title><subtitle>I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people  are ever going to give a fig about. If you&apos;re reading this, I literally don&apos;t believe you&apos;re a human being. Kindly enjoy your non-existence.</subtitle><entry><title type="html">Quantum computing with Jaq</title><link href="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html" rel="alternate" type="text/html" title="Quantum computing with Jaq" /><published>2023-03-20T00:45:01+00:00</published><updated>2023-03-20T00:45:01+00:00</updated><id>http://localhost:4000/2023/03/20/quantum-computing-with-jaq</id><content type="html" xml:base="http://localhost:4000/2023/03/20/quantum-computing-with-jaq.html"><![CDATA[<p>Jaq is a Quantum computing engine for Java that focuses on usage simplicity
 and modularity. It provides an abstraction of a quantum computer, the
 Quantum Virtual Machine (QVM). Quantum circuits can be then run indpedendently
 of the underlying QVM implementation. I have written a quantum computer
@@ -6,8 +6,8 @@ simulator that uses sparse linear algebra.</p>
 
 <p>For details, see the project <a href="https://github.com/patztablook22/jaq">repository</a>.</p>
 
-<p align="center">
-<img src="https://github.com/patztablook22/jaq/raw/main/src/main/java/io/github/patztablook22/jaq/doc-files/jaq.png" style="padding: 2rem; height: 22em" />
+<p class="center">
+<img src="https://github.com/patztablook22/jaq/raw/main/src/main/java/io/github/patztablook22/jaq/doc-files/jaq.png" style="height: 22em" />
 </p>
 
 <h2 id="lifecycle">Lifecycle</h2>
@@ -522,7 +522,7 @@ Next, we can use it simply as a usual function:</p>
 <p>Lambda flow can be represented as a directed acyclic multigraph. In make case,
 it will look like this:</p>
 
-<p align="center" style="padding: 1rem; filter: invert(96%)">
+<p class="center" style="filter: invert(96%);">
 <img src="https://www.plantuml.com/plantuml/svg/NP513eCW44NtdCAbcdW1qpHjsaqNNRKNG46bHL4OclJsPPe9ehl9-myOyayEk0K_QiRoGskqiNMZlJoM9I_B8gkgOvQB8gkpcv0JAFZkjIPgxLPh2Sk2uGqq1-Kin9fsITfX-l0DMDx2glI9qgDoznhKh9CtXaGPKBcgZnAIuOD_g10-BP_SR5pW7V7NZlV4tpi-4DSxheYFOO5Nd7573gFNB9y86eGNxiA_3A5b-vSvOePNu6ZNGvPIjpsqHCmm-i_KpyZxK0KF5G5Mb5J3Jd8IeV8V" />
 </p>
 
@@ -542,7 +542,7 @@ it is <strong>simplified into the following</strong>:</p>
 
 <p>Visualized as following:</p>
 
-<p align="center" style="padding: 1rem; filter: invert(96%)">
+<p class="center" style="filter: invert(96%);">
 <img src="https://www.plantuml.com/plantuml/svg/VP0z2iCm38LtdSAZOyW5GWafdJlr1F9FqeAS54SUSljAuA4KqksXzxvlqBGp5gwP0EmbRBILmLDDetFeN6VwVZGsT6OmrnX_5_vhSKv7fH_LSy70vueeYj1oKkIEd2k1ykq8McYSjR_XBhgvjKsRSKahevYVQXPB9NwzwG2x_5i2J6cDyeOF" />
 </p>
 

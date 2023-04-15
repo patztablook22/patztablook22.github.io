@@ -14,9 +14,9 @@ For details, see the project [repository](https://github.com/patztablook22/jaq).
 
 {% raw %}
 
-<p align="center">
+<p class="center">
 <img src="https://github.com/patztablook22/jaq/raw/main/src/main/java/io/github/patztablook22/jaq/doc-files/jaq.png"
- style="padding: 2rem; height: 22em" />
+ style="height: 22em" />
 </p>
 
 ## Lifecycle

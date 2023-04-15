@@ -1,6 +1,6 @@
 ---
 layout: default2
-title: Activity
+title: Latest
 permalink: /
 ---
 
