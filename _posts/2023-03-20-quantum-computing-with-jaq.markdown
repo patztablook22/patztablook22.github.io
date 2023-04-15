@@ -252,7 +252,7 @@ it is indeed the optimal solution.
 Having the sparse linear algebra implemented, we can just take
 the CNOT formula that we discovered earlier:
 
-\\[ \\mathop{CNOT} = \\ket{0} \\bra{0} \\otimes I_{2^M} \\otimes I_{2} + \\ket{1} \\bra{1} \\otimes I_{2^M} \\otimes  \\begin{pmatrix} 0 &amp; 1 \\\\ 1 &amp; 0 \\\\ \\end{pmatrix} , \\]
+\\[ \\mathop{CNOT} = I_{2^L} \\otimes \\ket{0} \\bra{0} \\otimes I_{2^M} \\otimes I_{2} \\otimes I_{2^N} + I_{2^L} \\otimes \\ket{1} \\bra{1} \\otimes I_{2^M} \\otimes  \\begin{pmatrix} 0 &amp; 1 \\\\ 1 &amp; 0 \\\\ \\end{pmatrix} \\otimes I_{2^N}. \\]
 
 and directly translate it to code (it would be analogous for \\( \\mathop{CNOT}' \\)):
 
