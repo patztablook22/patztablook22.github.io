@@ -162,7 +162,7 @@ matrix multiplication works, the matrix \\( \\ket{a} \\bra{b} \\) matches
 the basis vector \\( \\ket{b} \\) on the input, and transforms it into
 \\( \\ket{a} \\) on the output, i.e.
 
-\\[ (\\ket{a} \\bra{b}) \\cdot \\ket{b} = \\ket{a} \\cdot \\braket{a\|b} = \\ket{a}. \\]
+\\[ (\\ket{a} \\bra{b}) \\cdot \\ket{b} = \\ket{a} \\cdot \\braket{b\|b} = \\ket{a}. \\]
 
 And in the case the wrong input basis vector is given, it returns the zero vector \\( \\mathbf{0} \\):
 
