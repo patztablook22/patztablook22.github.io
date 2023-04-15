@@ -166,7 +166,7 @@ the basis vector \\( \\ket{b} \\) on the input, and transforms it into
 
 And in the case the wrong input basis vector is given, it returns the zero vector \\( \\mathbf{0} \\):
 
-\\[ (\\ket{a} \\bra{b}) \\cdot \\ket{c} = \\ket{a} \\cdot \\braket{a\|c} = \\ket{a} \\cdot 0 = \\mathbf{0}. \\]
+\\[ (\\ket{a} \\bra{b}) \\cdot \\ket{c} = \\ket{a} \\cdot \\braket{b\|c} = \\ket{a} \\cdot 0 = \\mathbf{0}. \\]
 
 Moving a layer up, 
 \\( \\ket{0} \\bra{0} \\otimes I_{2} \\)
