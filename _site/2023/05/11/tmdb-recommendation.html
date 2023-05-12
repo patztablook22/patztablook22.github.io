@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>ETRA 2019 challenge report | patztablook22</title>
+<title>Deep-learning movie recommendation | patztablook22</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="ETRA 2019 challenge report" />
+<meta property="og:title" content="Deep-learning movie recommendation" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed to check for one-to-one search correspondence in puzzle type experiments and for heterogeneities of visual attention with respect to the target area color. For puzzle compared to non-puzzle image types, left image attention is found to be a significant predictor of the right image attention, suggesting one-to-search search patterns. The observed color heterogeneities, e.g. RGB red or HSV value are discussed." />
-<meta property="og:description" content="Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed to check for one-to-one search correspondence in puzzle type experiments and for heterogeneities of visual attention with respect to the target area color. For puzzle compared to non-puzzle image types, left image attention is found to be a significant predictor of the right image attention, suggesting one-to-search search patterns. The observed color heterogeneities, e.g. RGB red or HSV value are discussed." />
-<link rel="canonical" href="http://localhost:4000/2023/03/09/etra-2019.html" />
-<meta property="og:url" content="http://localhost:4000/2023/03/09/etra-2019.html" />
+<meta name="description" content="A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and classical-learning based features perform similarly well. Advantages and limitations are discussed." />
+<meta property="og:description" content="A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and classical-learning based features perform similarly well. Advantages and limitations are discussed." />
+<link rel="canonical" href="http://localhost:4000/2023/05/11/tmdb-recommendation.html" />
+<meta property="og:url" content="http://localhost:4000/2023/05/11/tmdb-recommendation.html" />
 <meta property="og:site_name" content="patztablook22" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-03-09T00:45:01+00:00" />
+<meta property="article:published_time" content="2023-05-11T01:45:01+01:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="ETRA 2019 challenge report" />
+<meta property="twitter:title" content="Deep-learning movie recommendation" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-03-09T00:45:01+00:00","datePublished":"2023-03-09T00:45:01+00:00","description":"Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed to check for one-to-one search correspondence in puzzle type experiments and for heterogeneities of visual attention with respect to the target area color. For puzzle compared to non-puzzle image types, left image attention is found to be a significant predictor of the right image attention, suggesting one-to-search search patterns. The observed color heterogeneities, e.g. RGB red or HSV value are discussed.","headline":"ETRA 2019 challenge report","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/03/09/etra-2019.html"},"url":"http://localhost:4000/2023/03/09/etra-2019.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-11T01:45:01+01:00","datePublished":"2023-05-11T01:45:01+01:00","description":"A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and classical-learning based features perform similarly well. Advantages and limitations are discussed.","headline":"Deep-learning movie recommendation","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/05/11/tmdb-recommendation.html"},"url":"http://localhost:4000/2023/05/11/tmdb-recommendation.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="patztablook22" /><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -44,30 +44,26 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">ETRA 2019 challenge report</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Deep-learning movie recommendation</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2023-03-09T00:45:01+00:00" itemprop="datePublished">Mar 9, 2023
+      <time class="dt-published" datetime="2023-05-11T01:45:01+01:00" itemprop="datePublished">May 11, 2023
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Positional eye-tracking data from the ETRA 2019 challenge dataset is analyzed 
-to check for <em>one-to-one</em>
-search correspondence in <em>puzzle</em> type experiments and for heterogeneities
-of visual attention with respect to the target area color. For <em>puzzle</em>
-compared to <em>non-puzzle</em> image types, left image attention
-is found to be a significant predictor of the right image attention,
-suggesting one-to-search search patterns. The observed color heterogeneities,
-e.g. RGB red or HSV value are discussed.</p>
+    <p>A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based
+feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning
+hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and
+classical-learning based features perform similarly well. Advantages and limitations are discussed.</p>
 
 <hr />
 
-<p><a href="https://drive.google.com/file/d/1-H__EVVezoV0aEFNOtTsKUkw3c74Ts6V/view?usp=share_link">Link to pdf</a></p>
+<p><a href="https://drive.google.com/file/d/1TMuxK-WSw0QPAPsj3bo7StRpPOw3eV0z/view?usp=sharing">Link to pdf</a></p>
 
-<p>Semestral work for the <a href="http://csng.mff.cuni.cz/ikv1.html">Informatics and Cognitive Sciences</a>
-MFF course.</p>
+<p>Coursework for the <a href="https://course-module-catalog.port.ac.uk/#/moduleDetail/M26485/2022%2F23">Big Data</a>
+University of Portsmouth module.</p>
 
-  </div><a class="u-url" href="/2023/03/09/etra-2019.html" hidden></a>
+  </div><a class="u-url" href="/2023/05/11/tmdb-recommendation.html" hidden></a>
 </article>
 
       </div>

@@ -10,6 +10,9 @@ permalink: /
   {% for post in site.posts %}
     <li>
       <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {% if post.series %}
+      <p><span class="post-series">{{ post.series }}</span></p>
+      {% endif %}
       {{ post.excerpt }}
     </li>
   {% endfor %}

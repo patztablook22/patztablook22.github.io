@@ -20,6 +20,7 @@
   margin-bottom: 0;
   float: left;
   border-radius: $base-font-size;
+  color: $grey-color;
 
   &,
   &:visited {
@@ -27,8 +28,12 @@
   }
 
   &:hover {
-      text-decoration: none;
+    text-decoration: none;
     color: $grey-color-light;
+
+    .avatar {
+        filter: brightness(1.04);
+    }
   }
 }
 

@@ -256,6 +256,10 @@ table td {
   margin-top: 2em;
 }
 
+.post-series {
+  color: #949498;
+}
+
 /**
  * Site header
  */
@@ -276,6 +280,7 @@ table td {
   margin-bottom: 0;
   float: left;
   border-radius: 16px;
+  color: #949498;
 }
 .site-title, .site-title:visited {
   color: #949498;
@@ -283,6 +288,9 @@ table td {
 .site-title:hover {
   text-decoration: none;
   color: #aeaeb1;
+}
+.site-title:hover .avatar {
+  filter: brightness(1.04);
 }
 
 #i-am-text {
