@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-05-12T02:14:25+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">patztablook22</title><subtitle>I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people  are ever going to give a fig about. If you&apos;re reading this, I literally don&apos;t believe you&apos;re a human being. Kindly enjoy your non-existence.</subtitle><entry><title type="html">Face mask detection using one-stage and two-stage CNNs</title><link href="http://localhost:4000/2023/05/11/face-mask-detection.html" rel="alternate" type="text/html" title="Face mask detection using one-stage and two-stage CNNs" /><published>2023-05-11T01:45:01+01:00</published><updated>2023-05-11T01:45:01+01:00</updated><id>http://localhost:4000/2023/05/11/face-mask-detection</id><content type="html" xml:base="http://localhost:4000/2023/05/11/face-mask-detection.html"><![CDATA[<p>Multiple models have been trained on the WIDER FACE and MASKED FACE datasets. A two-stage CNN model has been
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-05-12T02:31:44+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">patztablook22</title><subtitle>I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people  are ever going to give a fig about. If you&apos;re reading this, I literally don&apos;t believe you&apos;re a human being. Kindly enjoy your non-existence.</subtitle><entry><title type="html">Face mask detection using one-stage and two-stage CNNs</title><link href="http://localhost:4000/2023/05/11/face-mask-detection.html" rel="alternate" type="text/html" title="Face mask detection using one-stage and two-stage CNNs" /><published>2023-05-11T01:45:01+01:00</published><updated>2023-05-11T01:45:01+01:00</updated><id>http://localhost:4000/2023/05/11/face-mask-detection</id><content type="html" xml:base="http://localhost:4000/2023/05/11/face-mask-detection.html"><![CDATA[<p>Multiple models have been trained on the WIDER FACE and MASKED FACE datasets. A two-stage CNN model has been
 trained separately on the two datasets, and used to enhance the MASKED FACE dataset. Further, one-stage YOLO detectors have
 been trained on the concatenation of the two datasets, with either the original or the enhanced MASKED FACE version. Both
 one-stage variants perform similarly well and outperform the two-stage model. The advantages and disadvantages of all approaches
@@ -7,12 +7,6 @@ are discussed.</p>
 <hr />
 
 <p>Link to pdf not included for ethical reasons.</p>
-
-<p>I do not want to paint myself, nor do I consider myself, to be
-paranoid towards the current world, despite occasionally
-thinking I should be. The majority of my concern is not in the trust towards it,
-but towards the potential future worlds inheriting technology that makes
-centralized power eaiser.</p>
 
 <p style="text-align: center; white-space: pre-line">
 <i>

@@ -14,12 +14,6 @@ are discussed.
 
 Link to pdf not included for ethical reasons. 
 
-I do not want to paint myself, nor do I consider myself, to be
-paranoid towards the current world, despite occasionally
-thinking I should be. The majority of my concern is not in the trust towards it,
-but towards the potential future worlds inheriting technology that makes
-centralized power eaiser.
-
 <p style="text-align: center; white-space: pre-line">
 <i>
 Caught up in my thoughts, I gazed   
