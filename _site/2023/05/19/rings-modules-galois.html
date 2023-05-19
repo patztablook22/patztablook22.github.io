@@ -3,21 +3,21 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Deep-learning movie recommendation | patztablook22</title>
+<title>Rings, modules, introduction to Galois theory | patztablook22</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="Deep-learning movie recommendation" />
+<meta property="og:title" content="Rings, modules, introduction to Galois theory" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and classical-learning based features perform similarly well. Advantages and limitations are discussed." />
-<meta property="og:description" content="A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and classical-learning based features perform similarly well. Advantages and limitations are discussed." />
-<link rel="canonical" href="http://localhost:4000/2023/05/11/tmdb-recommendation.html" />
-<meta property="og:url" content="http://localhost:4000/2023/05/11/tmdb-recommendation.html" />
+<meta name="description" content="A (commutative, unital) ring is the 3-tuple \( (R, +, \cdot) \) such that \( (R, +) \) is an Abelian group, \( (R, \cdot) \) is a commutative monoid, and the two satisfy mutually distributive laws. An \( R \)-module is an Abelian group tied to a scalar multiplication ring \( R \), satisfying mutual additive distributivite laws and multiplicative compatibility." />
+<meta property="og:description" content="A (commutative, unital) ring is the 3-tuple \( (R, +, \cdot) \) such that \( (R, +) \) is an Abelian group, \( (R, \cdot) \) is a commutative monoid, and the two satisfy mutually distributive laws. An \( R \)-module is an Abelian group tied to a scalar multiplication ring \( R \), satisfying mutual additive distributivite laws and multiplicative compatibility." />
+<link rel="canonical" href="http://localhost:4000/2023/05/19/rings-modules-galois.html" />
+<meta property="og:url" content="http://localhost:4000/2023/05/19/rings-modules-galois.html" />
 <meta property="og:site_name" content="patztablook22" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-05-11T02:45:01+02:00" />
+<meta property="article:published_time" content="2023-05-19T00:00:00+02:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Deep-learning movie recommendation" />
+<meta property="twitter:title" content="Rings, modules, introduction to Galois theory" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-11T02:45:01+02:00","datePublished":"2023-05-11T02:45:01+02:00","description":"A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and classical-learning based features perform similarly well. Advantages and limitations are discussed.","headline":"Deep-learning movie recommendation","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/05/11/tmdb-recommendation.html"},"url":"http://localhost:4000/2023/05/11/tmdb-recommendation.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-19T00:00:00+02:00","datePublished":"2023-05-19T00:00:00+02:00","description":"A (commutative, unital) ring is the 3-tuple \\( (R, +, \\cdot) \\) such that \\( (R, +) \\) is an Abelian group, \\( (R, \\cdot) \\) is a commutative monoid, and the two satisfy mutually distributive laws. An \\( R \\)-module is an Abelian group tied to a scalar multiplication ring \\( R \\), satisfying mutual additive distributivite laws and multiplicative compatibility.","headline":"Rings, modules, introduction to Galois theory","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2023/05/19/rings-modules-galois.html"},"url":"http://localhost:4000/2023/05/19/rings-modules-galois.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="patztablook22" /><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -44,26 +44,29 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Deep-learning movie recommendation</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Rings, modules, introduction to Galois theory</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2023-05-11T02:45:01+02:00" itemprop="datePublished">May 11, 2023
+      <time class="dt-published" datetime="2023-05-19T00:00:00+02:00" itemprop="datePublished">May 19, 2023
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>A modular movie recommendation algorithm for the TMDB 5000 dataset was designed, with a number of content-based
-feature pipelines. The features used range from very simple, such as rescaled numerical data or document TF-IDF, to deep-learning
-hidden states (BERT). All pipilines are found to be significantly better than random recommendations. Deep-learning and
-classical-learning based features perform similarly well. Advantages and limitations are discussed.</p>
+    <p>A (commutative, unital) ring is the 3-tuple \( (R, +, \cdot) \) such that
+\( (R, +) \) is an Abelian group, \( (R, \cdot) \) is a commutative monoid,
+and the two satisfy mutually distributive laws. 
+An \( R \)-module is an Abelian group tied to a scalar multiplication ring \( R \),
+satisfying mutual additive distributivite laws and multiplicative compatibility.</p>
 
-<hr />
+<p>The coursework followed up on the 
+<a href="/2023/03/13/rings-and-ideals.html">previous one</a>
+.</p>
 
-<p><a href="https://drive.google.com/file/d/1TMuxK-WSw0QPAPsj3bo7StRpPOw3eV0z/view?usp=sharing">Link to pdf</a></p>
+<p><a href="https://drive.google.com/file/d/1KC5mlZxuWACvQnxG8fQBt1VA5B9IWpOu/view?usp=share_link">Link to pdf</a></p>
 
-<p>Coursework for the <a href="https://course-module-catalog.port.ac.uk/#/moduleDetail/M26485/2022%2F23">Big Data</a>
+<p>Coursework for the <a href="https://course-module-catalog.port.ac.uk/#/moduleDetail/M20727/2022%2F23">Abstract Algebra</a>
 University of Portsmouth module.</p>
 
-  </div><a class="u-url" href="/2023/05/11/tmdb-recommendation.html" hidden></a>
+  </div><a class="u-url" href="/2023/05/19/rings-modules-galois.html" hidden></a>
 </article>
 
       </div>
