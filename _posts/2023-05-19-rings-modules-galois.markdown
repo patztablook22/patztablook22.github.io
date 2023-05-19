@@ -8,7 +8,7 @@ A (commutative, unital) ring is the 3-tuple \\( (R, +, \\cdot) \\) such that
 \\( (R, +) \\) is an Abelian group, \\( (R, \\cdot) \\) is a commutative monoid,
 and the two satisfy mutually distributive laws. 
 An \\( R \\)-module is an Abelian group tied to a scalar multiplication ring \\( R \\),
-satisfying mutual additive distributivite laws and multiplicative compatibility.
+satisfying mutual distributivite laws and multiplicative compatibility.
 
 The coursework followed up on the 
 [previous one]({% post_url 2023-03-13-rings-and-ideals%})
