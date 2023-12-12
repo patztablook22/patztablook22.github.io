@@ -4,8 +4,9 @@
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <a class="site-title" rel="author" href="{{ "/about/" | relative_url }}">
-        <img class="avatar" src="https://avatars.githubusercontent.com/u/62576875?v=4" />
-        {{ site.title | escape }}</a>
+        <!-- <img class="avatar" src="https://avatars.githubusercontent.com/u/62576875?v=4" /> -->
+        <img class="avatar" src="https://media.licdn.com/dms/image/D4E03AQHu_xG17c88hQ/profile-displayphoto-shrink_800_800/0/1672236179663?e=1707955200&v=beta&t=1AdQ5h5P3Xm65xUIiM1Tmu4sxGmbxH8taCtKDcLj-2I" />
+        <span class="name">{{ site.title | escape }}</span></a>
 
     {%- if page_paths -%}
       <nav class="site-nav">

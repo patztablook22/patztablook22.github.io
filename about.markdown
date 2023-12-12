@@ -7,14 +7,16 @@ permalink: /about/
 # I am
 
 <p>
-... a 21 y/o Artificial Intelligence student from Liberec, Czechia. Currently, I live in Prague,
+... a 22 y/o artificial intelligence student from Liberec, Czechia. Currently, I live in Prague,
 where I study at the <a href="https://www.mff.cuni.cz/">Department of Mathematics and Physics of the Charles University</a>. 
 </p>
 
 <p>
-I focus on machine learning, especially on artificial neural networks. I also learn about the biological brain.
-In the future, I would like to use state-of-the-art machine learning for exploring the brain. I am also interested
-in biologically-inspired artifical intelligence, and the potental creation of artificial general intelligence.
+I focus on neural networks, especially transformers.
+I also learn about the biological brain.
+In the future, I would like to research
+biologically-inspired artifical intelligence, and work on the potental creation of artificial general intelligence.
+I've been also experimenting with quantum computing lately.
 </p>
 
 <p>
@@ -31,16 +33,21 @@ I like fractals.
 <br />
 
 ## Projects
+- [patztabot22](https://github.com/patztablook22/patztabot22) \
+  A custom LM trained to mimic me personally.
+
 - [Matcha](https://matcha-ai.github.io/matcha) \
-  Tensor & automatic differentiation engine with neural networks for modern C++
+  Tensor & automatic differentiation engine with neural networks for modern C++.
 
 - [Jaq](https://github.com/patztablook22/jaq) \
-    Quantum computing engine for Java
+  Quantum computing engine for Java.
 
-- [Genbot](https://github.com/patztablook22/genbot) \
-    Discord chatbot deployment library for generative language models
+- [Hmm](https://github.com/patztablook22/hmm) \
+  Haskell MIDI Manipulator.
 
-- Algebraic music theory
+- [Genbot](https://github.com/patztablook22/genbot) - Generative LM deployment on Discord with various development utils. \
+  [Shellbot](https://github.com/patztablook22/shellbot) - Remote shell over a Discord bot for training on remote clusters.
+
 - [Sci-Hub enhancer for academics](https://github.com/patztablook22/sci-hub)
 - [Parallelized Mandelbrot set viewer written in C++](https://github.com/patztablook22/mandelbrot-viewer-qt-quick)
 
@@ -53,9 +60,10 @@ I like fractals.
 ## Languages
 - Czech - native
 - English - certified C2
-- Russian - basic to intermediate
-- C++ (11 and later) - fluent
+- Russian - B1
 - Python 3 - fluent
+- C++ (especially 17 and later) - fluent
+- Haskell - advanced
 - Java - advanced
 - Kotlin - basic to intermediate
 - C# - basic to intermediate

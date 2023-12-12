@@ -271,12 +271,11 @@ table td {
 }
 
 .site-title {
-  font-size: 26px;
-  font-weight: 300;
+  font-size: 24.4px;
+  font-weight: 200;
   line-height: 54px;
-  letter-spacing: -1px;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding-right: 1em;
+  padding-left: 1em;
   margin-bottom: 0;
   float: left;
   border-radius: 16px;
@@ -287,12 +286,7 @@ table td {
 }
 .site-title:hover {
   text-decoration: none;
-  color: #aeaeb1;
 }
-.site-title:hover .avatar {
-  filter: brightness(1.04);
-}
-
 #i-am-text {
   width: 600px;
 }
