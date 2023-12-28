@@ -45,8 +45,8 @@ I like fractals.
 - [Hmm](https://github.com/patztablook22/hmm) \
   Haskell MIDI Manipulator.
 
-- [Genbot](https://github.com/patztablook22/genbot) - Generative LM deployment on Discord with various development utils. \
-  [Shellbot](https://github.com/patztablook22/shellbot) - Remote shell over a Discord bot for training on remote clusters.
+- [Genbot](https://github.com/patztablook22/genbot) - Generative LM deployment for Discord. \
+  [Shellbot](https://github.com/patztablook22/shellbot) - A Discord bot for monitoring and controlling jobs as a remote shell.
 
 - [Sci-Hub enhancer for academics](https://github.com/patztablook22/sci-hub)
 - [Parallelized Mandelbrot set viewer written in C++](https://github.com/patztablook22/mandelbrot-viewer-qt-quick)
