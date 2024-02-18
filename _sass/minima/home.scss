@@ -30,7 +30,7 @@ h1.patztablook22 {
         padding: 0.5rem 2rem 0rem 0rem;
         margin: 1rem;
         float: left;
-        width: calc($content-width / 2 - 2px - 6rem);
+        width: $content-width / 2 - 2px - 6 * $base-font-size;
         border: 1px solid #30363d;
         border-radius: 0.5rem;
         background: #0d1117;
