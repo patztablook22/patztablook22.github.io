@@ -33,7 +33,121 @@
         addEventListener("DOMContentLoaded", removeMathJaxFromTabIndex);
     </script>
 </head>
-<body><header class="site-header" role="banner">
+<body><div class="controls">
+    
+    <a class="prev hidden" href="" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271220.png" />
+    </a>
+    
+
+    
+    <a class="next hidden" href="" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271228.png" />
+    </a>
+    
+
+    <script>
+        document.onkeydown = checkKey;
+
+        const index = [
+            "/", 
+            "/about/", 
+            "/papers/", 
+            "/projects/", 
+            "/other/", 
+            "/links/", 
+            ];
+
+        function boundRedirect(url) {
+            if (url == "") return;
+            //if (url == new URL(window.location.href).pathname) return;
+            window.location.href = url;
+        }
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38' || e.key == 'j') {
+                // up arrow
+
+                if (e.key == 'j') {
+                    window.scrollBy(0, 32);
+                }
+
+            } else if (e.keyCode == '40' || e.key == 'k') {
+                // down arrow
+
+                if (e.key == 'k') {
+                    window.scrollBy(0, -32);
+                }
+
+            } else if (e.keyCode == '37' || e.key == 'h') {
+
+                // left arrow
+                boundRedirect("");
+
+            } else if (e.keyCode == '39' || e.key == 'l') {
+
+                // right arrow
+                boundRedirect("");
+
+            } else if (!isNaN(parseInt(e.key))) {
+                let url = index[parseInt(e.key)]
+                if (!index.includes(url)) return;
+                boundRedirect(url);
+            }
+        }
+    </script>
+</div>
+<div class="page-content split-page">
+            
+                <div class="right" style="background: #1a1a1a">
+            
+
+            <main class="page-content" aria-label="Content">
+                <div class="wrapper moved">
+                    <h1 style="font-size: 4rem">404</h1>
+
+<p><strong>Page not found :(</strong></p>
+<p>The requested page could not be found.</p>
+
+                </div>
+            </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+
+    <div class="">
+
+        <h2 class="footer-heading">patztablook22</h2>
+
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+                <ul class="contact-list">
+                    <li class="p-name">
+                        Patrik Zavoral
+                    </li><li><a class="u-email" href="mailto:patrik.zavoral@gmail.com">patrik.zavoral@gmail.com</a></li></ul>
+            </div>
+
+            <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://instagram.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://www.linkedin.com/in/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">patztablook22</span></a></li></ul>
+</div>
+
+            <div class="footer-col footer-col-3">
+                <p>
+                This webpage is Vim friendly. 
+                <img class="inline-icon" src="https://www.vim.org/images/vimlogo.svg" />
+                <br />
+                Try [hjkl].
+                </p>
+                <!--<p></p>-->
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+</div>
+
+            <div class="left"><header class="site-header" role="banner">
 
   <div><a class="patztablook22 site-title" tabindex="-1" rel="author" href="/">patztablook22
         <span class="effect">patztablook22</span>
@@ -68,62 +182,9 @@
 </ol>
 
 </header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
 </div>
 
-      </div>
-    </main><footer class="site-footer h-card">
-    <data class="u-url" href="/"></data>
-
-    <div class="">
-
-        <h2 class="footer-heading">patztablook22</h2>
-
-        <div class="footer-col-wrapper">
-            <div class="footer-col footer-col-1">
-                <ul class="contact-list">
-                    <li class="p-name">
-                        Patrik Zavoral
-                    </li><li><a class="u-email" href="mailto:patrik.zavoral@gmail.com">patrik.zavoral@gmail.com</a></li></ul>
-            </div>
-
-            <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://instagram.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://www.linkedin.com/in/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">patztablook22</span></a></li></ul>
-</div>
-
-            <div class="footer-col footer-col-3">
-                <p>
-                This webpage is Vim friendly. 
-                <img class="inline-icon" src="https://www.vim.org/images/vimlogo.svg" />
-                <br />
-                Try [hjkl].
-                </p>
-                <!--<p></p>-->
-            </div>
         </div>
-
-    </div>
-
-</footer>
-</body>
+    </body>
 
 </html>
