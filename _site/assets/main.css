@@ -2490,7 +2490,7 @@ table td {
   pointer-events: none;
   user-select: none;
 }
-@media screen and (max-width: calc(20rem + 800px)) {
+@media screen and (max-width: 1120px) {
   .split-page .left {
     border-bottom: 4px solid #252525;
     height: calc(3.5rem - 4px);
@@ -2868,7 +2868,7 @@ h1.patztablook22 {
   pointer-events: none;
   user-select: none;
 }
-@media screen and (max-width: calc(20rem + 1000px)) {
+@media screen and (max-width: 1016px) {
   .projects .project {
     width: calc(100% - 6px - 2rem);
     border-left: none;

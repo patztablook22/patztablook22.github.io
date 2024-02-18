@@ -360,7 +360,7 @@
         }
     }
 
-    @include media-query(calc(20rem + $on-laptop)) {
+    @include media-query(20 * $base-font-size + $on-laptop) {
         .left {
             border-bottom: 4px solid #252525;
             height: calc(3.5rem - 4px);

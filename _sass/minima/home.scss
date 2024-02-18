@@ -88,7 +88,7 @@ h1.patztablook22 {
             user-select: none;
         }
 
-        @media screen and (max-width: calc(20rem + $content-width)) {
+        @media screen and (max-width: $base-font-size + $content-width) {
             & {
                 width: calc(100% - 6px - 2rem);
                 border-left: none;
