@@ -30,7 +30,7 @@
         text-decoration: none;
     }
 
-    @include media-query(calc(20rem + $content-width + 5rem)) {
+    @include media-query(25 * $base-font-size + $content-width) {
         & {
             position: absolute;
             top: 0.5rem;

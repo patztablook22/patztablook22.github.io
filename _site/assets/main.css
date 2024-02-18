@@ -2779,7 +2779,7 @@ img.inline-icon {
   color: #d7d7d5;
   text-decoration: none;
 }
-@media screen and (max-width: calc(20rem + 1000px + 5rem)) {
+@media screen and (max-width: 1400px) {
   .controls {
     position: absolute;
     top: 0.5rem;
