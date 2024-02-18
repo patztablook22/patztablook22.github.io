@@ -14,7 +14,6 @@ hr {
 }
 
 
-
 /**
  * Basic styling
  */
@@ -43,7 +42,12 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-  margin-bottom: $spacing-unit / 2;
+  margin-bottom: calc(0.5 * $spacing-unit);
+}
+
+h2, h3, h4, h5, h6,
+%vertical-rhythm {
+  margin-top: calc(0.7 * $spacing-unit);
 }
 
 
@@ -104,9 +108,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-/**
- * Links
- */
 a {
   color: $brand-color;
   text-decoration: none;
@@ -127,6 +128,27 @@ a {
       text-decoration: underline;
     }
   }
+}
+
+main {
+    p:not(.no-a), ul:not(.no-a), ol:not(.no-a) {
+        a {
+            color: darken($grey-color, 15%);
+            font-weight: bold;
+
+            &:visited {
+                color: darken($grey-color, 15%);
+            }
+
+            &::after {
+                content: "[?]";
+                font-size: 66%;
+                vertical-align: super;
+                margin-left: 0.2em;
+            }
+        }
+    }
+
 }
 
 
@@ -203,6 +225,10 @@ pre {
       padding-top: 1em;
       padding-bottom: 1em;
   }
+}
+
+.wrapper.moved {
+    margin-left: 0;
 }
 
 /**
@@ -300,3 +326,77 @@ table {
 .post-series {
     color: $grey-color;
 }
+
+@keyframes slide-from-right {
+    0% { opacity: 0; transform: translateX(1rem); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@for $i from 1 through 99 {
+  .slide-from-right:nth-child(#{$i}){
+    animation: slide-from-right forwards 0.3s;
+    animation-delay: $i * 0.1s - 0.1s + 0.5s;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-bottom {
+    0% { opacity: 0; transform: translateY(1rem); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@for $i from 1 through 99 {
+  .slide-from-bottom:nth-child(#{$i}){
+    animation: slide-from-bottom forwards 0.5s;
+    animation-delay: $i * 0.1s - 0.1s;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-top {
+    0% { opacity: 0; transform: translateY(-1rem); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@for $i from 1 through 99 {
+  .slide-from-top:nth-child(#{$i}){
+    animation: slide-from-top forwards 0.5s;
+    animation-delay: $i * 0.1s - 0.1s;
+    opacity: 0;
+  }
+}
+
+.patztablook22 {
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: bold;
+    user-select: none;
+
+    &::before {
+        content: "@";
+        color: #555555;
+        font-weight: bold;
+    }
+    text-align: right;
+
+    .effect {
+        user-select: none;
+
+        &::before {
+            content: "@";
+            color: #555555;
+            font-weight: bold;
+            visibility: hidden;
+        }
+
+        @for $i from 1 through 10 {
+        &:nth-child(#{$i}){
+            opacity: 1 - 0.3 * $i;
+            position: absolute;
+            left: 0;
+            top: 1em * $i;
+        }
+        }
+    }
+}
+

@@ -4,10 +4,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- seo -%}
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/projects.css" | relative_url }}">
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
   {%- endif -%}
    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+    <script>
+        function removeMathJaxFromTabIndex(event) {
+            var mathjaxElements = [document.getElementsByClassName("MathJax"),
+                                   document.getElementsByClassName("MathJax_Preview")];
+
+            for (var i = 0; i < mathjaxElements.length; i++)
+                for (var j = 0; j < mathjaxElements[i].length; j++)
+                    mathjaxElements[i][j].tabIndex = -1;
+        }
+        addEventListener("DOMContentLoaded", removeMathJaxFromTabIndex);
+    </script>
 </head>

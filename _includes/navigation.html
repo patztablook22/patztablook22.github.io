@@ -1,0 +1,10 @@
+{% assign indexed = site.home | shift %}
+<ol class="navigation no-a">
+{% for section in indexed %}
+    {% if page.url == section.url | relative_rul %}
+        <li class="current"><a href="{{ section.url }}" {% if page.title != 'Home' %}tabindex="-1"{% endif %}>{{ section.title }}</a></li>
+    {% else %}
+    <li><a href="{{ section.url }}" {% if page.title != 'Home' %}tabindex="-1"{% endif %}>{{ section.title }}</a></li>
+    {% endif %}
+{% endfor %}
+</ol>

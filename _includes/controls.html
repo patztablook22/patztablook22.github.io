@@ -1,0 +1,70 @@
+<div class="controls">
+    {% if page.previous %}
+    <a class="prev" href="{{ page.previous.url }}" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271220.png" />
+    </a>
+    {% else %}
+    <a class="prev hidden" href="{{ page.previous.url }}" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271220.png" />
+    </a>
+    {% endif %}
+
+    {% if page.next %}
+    <a class="next" href="{{ page.next.url }}" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271228.png" />
+    </a>
+    {% else %}
+    <a class="next hidden" href="{{ page.next.url }}" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271228.png" />
+    </a>
+    {% endif %}
+
+    <script>
+        document.onkeydown = checkKey;
+
+        const index = [
+            {% for section in site.home %}"{{ section.url }}", 
+            {% endfor %}];
+
+        function boundRedirect(url) {
+            if (url == "") return;
+            //if (url == new URL(window.location.href).pathname) return;
+            window.location.href = url;
+        }
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38' || e.key == 'j') {
+                // up arrow
+
+                if (e.key == 'j') {
+                    window.scrollBy(0, 32);
+                }
+
+            } else if (e.keyCode == '40' || e.key == 'k') {
+                // down arrow
+
+                if (e.key == 'k') {
+                    window.scrollBy(0, -32);
+                }
+
+            } else if (e.keyCode == '37' || e.key == 'h') {
+
+                // left arrow
+                boundRedirect("{{ page.previous.url }}");
+
+            } else if (e.keyCode == '39' || e.key == 'l') {
+
+                // right arrow
+                boundRedirect("{{ page.next.url }}");
+
+            } else if (!isNaN(parseInt(e.key))) {
+                let url = index[parseInt(e.key)]
+                if (!index.includes(url)) return;
+                boundRedirect(url);
+            }
+        }
+    </script>
+</div>

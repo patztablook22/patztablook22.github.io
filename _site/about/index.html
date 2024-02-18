@@ -7,148 +7,203 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="About" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people are ever going to give a fig about. If you’re reading this, I literally don’t believe you’re a human being. Kindly enjoy your non-existence." />
-<meta property="og:description" content="I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people are ever going to give a fig about. If you’re reading this, I literally don’t believe you’re a human being. Kindly enjoy your non-existence." />
+<meta name="description" content="ABOUT" />
+<meta property="og:description" content="ABOUT" />
 <link rel="canonical" href="http://localhost:4000/about/" />
 <meta property="og:url" content="http://localhost:4000/about/" />
 <meta property="og:site_name" content="patztablook22" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-18T19:46:08+01:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="About" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people are ever going to give a fig about. If you’re reading this, I literally don’t believe you’re a human being. Kindly enjoy your non-existence.","headline":"About","name":"patztablook22","url":"http://localhost:4000/about/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","dateModified":"2024-02-18T19:46:08+01:00","datePublished":"2024-02-18T19:46:08+01:00","description":"ABOUT","headline":"About","name":"patztablook22","url":"http://localhost:4000/about/"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="patztablook22" /><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/projects.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="patztablook22" /><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+    <script>
+        function removeMathJaxFromTabIndex(event) {
+            var mathjaxElements = [document.getElementsByClassName("MathJax"),
+                                   document.getElementsByClassName("MathJax_Preview")];
+
+            for (var i = 0; i < mathjaxElements.length; i++)
+                for (var j = 0; j < mathjaxElements[i].length; j++)
+                    mathjaxElements[i][j].tabIndex = -1;
+        }
+        addEventListener("DOMContentLoaded", removeMathJaxFromTabIndex);
+    </script>
 </head>
-<body><header class="site-header" role="banner">
+<body><div class="controls">
+    
+    <a class="prev" href="/" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271220.png" />
+    </a>
+    
 
-  <div><a class="site-title" rel="author" href="/about/">
-        <!-- <img class="avatar" src="https://avatars.githubusercontent.com/u/62576875?v=4" /> -->
-        <img class="avatar" src="https://media.licdn.com/dms/image/D4E03AQHu_xG17c88hQ/profile-displayphoto-shrink_800_800/0/1672236179663?e=1707955200&v=beta&t=1AdQ5h5P3Xm65xUIiM1Tmu4sxGmbxH8taCtKDcLj-2I" />
-        <span class="name">patztablook22</span></a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
+    
+    <a class="next" href="/papers/" tabindex="-1">
+        <img src="https://cdn-icons-png.flaticon.com/128/271/271228.png" />
+    </a>
+    
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/">Latest</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <h1 id="i-am">I am</h1>
+    <script>
+        document.onkeydown = checkKey;
 
-<p>
-... a 22 y/o artificial intelligence student from Liberec, Czechia. Currently, I live in Prague,
-where I study at the <a href="https://www.mff.cuni.cz/">Department of Mathematics and Physics of the Charles University</a>. 
-</p>
+        const index = [
+            "/", 
+            "/about/", 
+            "/papers/", 
+            "/projects/", 
+            "/other/", 
+            "/links/", 
+            ];
 
-<p>
-I focus on neural networks, especially transformers.
-I also learn about the biological brain.
-In the future, I would like to research
-biologically-inspired artifical intelligence, and work on the potental creation of artificial general intelligence.
-I've been also experimenting with quantum computing lately.
-</p>
+        function boundRedirect(url) {
+            if (url == "") return;
+            //if (url == new URL(window.location.href).pathname) return;
+            window.location.href = url;
+        }
 
-<p>
-I practice a lot of jazz piano. Occasionally I perform in public. My favourite pianist
-is <a href="https://en.wikipedia.org/wiki/Esbj%C3%B6rn_Svensson">Esbjörn Svensson</a>. 
-Sometimes I reharmonize songs, and I have also done some composing.
-I prefer playing in a band to solo-playing. This is both my way to relax and my passionate long-time endeavour.
-</p>
+        function checkKey(e) {
 
-<p>
-I like fractals.
-</p>
+            e = e || window.event;
 
-<p><br /></p>
+            if (e.keyCode == '38' || e.key == 'j') {
+                // up arrow
 
-<h2 id="projects">Projects</h2>
-<ul>
-  <li>
-    <p><a href="https://github.com/patztablook22/patztabot22">patztabot22</a> <br />
-A custom LM trained to mimic me personally.</p>
-  </li>
-  <li>
-    <p><a href="https://matcha-ai.github.io/matcha">Matcha</a> <br />
-Tensor &amp; automatic differentiation engine with neural networks for modern C++.</p>
-  </li>
-  <li>
-    <p><a href="https://github.com/patztablook22/jaq">Jaq</a> <br />
-Quantum computing engine for Java.</p>
-  </li>
-  <li>
-    <p><a href="https://github.com/patztablook22/hmm">Hmm</a> <br />
-Haskell MIDI Manipulator.</p>
-  </li>
-  <li>
-    <p><a href="https://github.com/patztablook22/genbot">Genbot</a> - Generative LM deployment for Discord. <br />
-<a href="https://github.com/patztablook22/shellbot">Shellbot</a> - A Discord bot for monitoring and controlling jobs as a remote shell.</p>
-  </li>
-  <li><a href="https://github.com/patztablook22/sci-hub">Sci-Hub enhancer for academics</a></li>
-  <li><a href="https://github.com/patztablook22/mandelbrot-viewer-qt-quick">Parallelized Mandelbrot set viewer written in C++</a></li>
-</ul>
+                if (e.key == 'j') {
+                    window.scrollBy(0, 32);
+                }
 
-<h2 id="experience">Experience</h2>
-<ul>
-  <li>Full-stack junior C++ developer at <a href="https://workswell-thermal-camera.com">Workswell</a></li>
-  <li>Data &amp; Machine Learning engineering at <a href="https://sportmatiq.com">Sportmatiq</a></li>
-</ul>
+            } else if (e.keyCode == '40' || e.key == 'k') {
+                // down arrow
 
-<h2 id="languages">Languages</h2>
-<ul>
-  <li>Czech - native</li>
-  <li>English - certified C2</li>
-  <li>Russian - B1</li>
-  <li>Python 3 - fluent</li>
-  <li>C++ (especially 17 and later) - fluent</li>
-  <li>Haskell - advanced</li>
-  <li>Java - advanced</li>
-  <li>Kotlin - basic to intermediate</li>
-  <li>C# - basic to intermediate</li>
-  <li>Anything web-related - just barely</li>
-</ul>
+                if (e.key == 'k') {
+                    window.scrollBy(0, -32);
+                }
 
-<h2 id="important-files">Important files</h2>
+            } else if (e.keyCode == '37' || e.key == 'h') {
 
-<ul>
-  <li><a href="">CV</a></li>
-  <li><a href="https://github.com/patztablook22/dotfiles/tree/main/.config/nvim">Vim configuration</a></li>
-</ul>
+                // left arrow
+                boundRedirect("/");
 
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
+            } else if (e.keyCode == '39' || e.key == 'l') {
 
-  <div class="wrapper">
+                // right arrow
+                boundRedirect("/papers/");
 
-    <h2 class="footer-heading">patztablook22</h2>
+            } else if (!isNaN(parseInt(e.key))) {
+                let url = index[parseInt(e.key)]
+                if (!index.includes(url)) return;
+                boundRedirect(url);
+            }
+        }
+    </script>
+</div>
+<div class="page-content split-page">
+            
+                <div class="right" style="background: #1a1a1a">
+            
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-              Patrik Zavoral
-            </li><li><a class="u-email" href="mailto:patrik.zavoral@gmail.com">patrik.zavoral@gmail.com</a></li></ul>
-      </div>
+            <main class="page-content" aria-label="Content">
+                <div class="wrapper moved">
+                    <h1 style="font-size: 250%">ABOUT</h1>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://www.twitter.com/"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username"></span></a></li></ul>
+<p>I am 22 years old. Currently I live in Prague,
+where I study Artificial Intelligence at the <a href="https://www.mff.cuni.cz/">Department of Mathematics and Physics of the Charles University</a>.</p>
+
+<p>I focus on neural networks, especially <a href="https://arxiv.org/abs/1706.03762">Transformer</a> models.
+In the future, I would like to
+work on the potental creation of Artificial General Intelligence,
+possibly with inspirations in the biological brain. 
+I’ve been also experimenting with <a href="https://github.com/patztablook22/jaq">Quantum Computing</a> lately.</p>
+
+<p>I practice a lot of jazz piano. Occasionally I perform in public. 
+I listen mostly to modern Scandinavian jazz and ECM/ACT style.
+My favourite pianists are
+<a href="https://en.wikipedia.org/wiki/Esbj%C3%B6rn_Svensson">Esbjörn Svensson</a>
+and 
+<a href="https://en.wikipedia.org/wiki/Brad_Mehldau">Brad Mehldau</a>.
+Sometimes I reharmonize songs, and I have also done some composing.</p>
+
+<p>I like fractals.</p>
+
+                </div>
+            </main><footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+
+    <div class="">
+
+        <h2 class="footer-heading">patztablook22</h2>
+
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+                <ul class="contact-list">
+                    <li class="p-name">
+                        Patrik Zavoral
+                    </li><li><a class="u-email" href="mailto:patrik.zavoral@gmail.com">patrik.zavoral@gmail.com</a></li></ul>
+            </div>
+
+            <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://instagram.com/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">patztablook22</span></a></li><li><a href="https://www.linkedin.com/in/patztablook22"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">patztablook22</span></a></li></ul>
 </div>
 
-      <div class="footer-col footer-col-3">
-        <p>I figured I am not nearly as narcissistic as I can. Therefore I made this website precisely zero people  are ever going to give a fig about. If you&#39;re reading this, I literally don&#39;t believe you&#39;re a human being. Kindly enjoy your non-existence.</p>
-      </div>
+            <div class="footer-col footer-col-3">
+                <p>
+                This webpage is Vim friendly. 
+                <img class="inline-icon" src="https://www.vim.org/images/vimlogo.svg" />
+                <br />
+                Try [hjkl].
+                </p>
+                <!--<p></p>-->
+            </div>
+        </div>
+
     </div>
 
+</footer>
+</div>
+
+            <div class="left"><header class="site-header" role="banner">
+
+  <div><a class="patztablook22 site-title" tabindex="-1" rel="author" href="/">patztablook22
+        <span class="effect">patztablook22</span>
+        <span class="effect">patztablook22</span>
+        <span class="effect">patztablook22</span>
+    </a>
   </div>
 
-</footer>
-</body>
+    
+<ol class="navigation no-a">
+
+    
+        <li class="current"><a href="/about/" tabindex="-1">About</a></li>
+    
+
+    
+    <li><a href="/papers/" tabindex="-1">Papers</a></li>
+    
+
+    
+    <li><a href="/projects/" tabindex="-1">Projects</a></li>
+    
+
+    
+    <li><a href="/other/" tabindex="-1">Other&nbsp;work</a></li>
+    
+
+    
+    <li><a href="/links/" tabindex="-1">Links</a></li>
+    
+
+</ol>
+
+</header>
+</div>
+
+        </div>
+    </body>
 
 </html>

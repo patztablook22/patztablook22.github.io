@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+    {%- include head.html -%}
+
+    {% if page.title != "Home" %}
+    {%- include profile.html -%}
+    {% endif %}
+
+    <body>
+        {%- include controls.html -%}
+
+        <div class="split-cover">
+            <div class="left">
+                <main class="page-content" aria-label="Content">
+
+                    <div class="wrapper" style="position: relative; height: 90vh; padding-left: 3rem">
+                        {{ content }}
+                    </div>
+                </main>
+            </div>
+            <div class="right" style="height: 100vh; overflow: hidden; background: black">
+                <div style="height: 100vh; width: 100vh; position: absolute; left: max(-50vh, max((70% - 70vh), 100% - 100vh));">
+                    <img src="/assets/img/bg.jpeg" style="height: 100%"/>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

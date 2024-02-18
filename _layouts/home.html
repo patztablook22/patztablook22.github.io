@@ -1,34 +1,40 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+  {%- include head.html -%}
+<style>
+h1::before {
+    content: "@";
+    color: #444444;
+}
+</style>
 
-  {{ content }}
+  <body>
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+    <div class="row">
+        <div class="left" style="">
+            <main class="page-content" aria-label="Content" style="float: left">
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
+                <div class="wrapper" style="position: relative; height: 90vh; padding-left: 3rem">
+                    <h1 style="position: absolute; top: 20%; font-size: 250%; font-weight: bold">PATZTABLOOK22</h1>
+                    <ol style="position: absolute; bottom: 0;" class="overview">
+                        <li>I am</li>
+                        <li>Papers</li>
+                        <li>Projects</li>
+                        <li>Experience</li>
+                        <li>Languages</li>
+                        <li>Important files</li>
+                    </ol>
+                </div>
+            </main>
+        </div>
+        <div class="right" style="height: 100vh; background: black; overflow: hidden">
+            <div style="height: 100vh; width: 100vh; position: absolute; right: -0%">
+            <img src="/assets/img/bg.jpeg" style="height: 100%"/>
+            </div>
+        </div>
+    </div>
 
-</div>
+  </body>
+
+</html>

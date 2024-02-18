@@ -10,9 +10,18 @@ $base-line-height: 1.5 !default;
 
 $spacing-unit:     30px !default;
 
-$text-color:       #c5c5c5!default;
-$background-color: #131314 !default;
-$brand-color:      #8b7ae2 !default;
+$text-color:       #d7d7d5 !default;
+$background-color: #222222 !default;
+$brand-color:      #d7d7d5 !default;
+
+//$text-color:       #c5c5c5!default;
+//$background-color: #131314 !default;
+//$brand-color:      #8b7ae2 !default;
+
+//$grey-color:       #949498 !default;
+//$grey-color-light: lighten($grey-color, 10%) !default;
+//$grey-color-dark:  #222222;
+//$grey-color-dark2: #222222;
 
 $grey-color:       #949498 !default;
 $grey-color-light: lighten($grey-color, 10%) !default;
@@ -26,6 +35,7 @@ $content-width:    1000px !default;
 
 $on-palm:          600px !default;
 $on-laptop:        800px !default;
+$wide-enough:      700px !default;
 
 // Use media queries like this:
 // @include media-query($on-palm) {
@@ -48,5 +58,7 @@ $on-laptop:        800px !default;
 @import
   "minima/base",
   "minima/layout",
-  "minima/syntax-highlighting"
+  "minima/syntax-highlighting",
+  "minima/controls",
+  "minima/home"
 ;

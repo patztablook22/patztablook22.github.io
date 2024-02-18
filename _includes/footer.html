@@ -1,31 +1,37 @@
 <footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+    <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
-  <div class="wrapper">
+    <div class="">
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+        <h2 class="footer-heading">{{ site.title | escape }}</h2>
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-              Patrik Zavoral
-            </li>
-            {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
-        </ul>
-      </div>
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+                <ul class="contact-list">
+                    <li class="p-name">
+                        Patrik Zavoral
+                    </li>
+                    {%- if site.email -%}
+                    <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+                    {%- endif -%}
+                </ul>
+            </div>
 
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
+            <div class="footer-col footer-col-2">
+                {%- include social.html -%}
+            </div>
 
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
+            <div class="footer-col footer-col-3">
+                <p>
+                This webpage is Vim friendly. 
+                <img class="inline-icon" src="https://www.vim.org/images/vimlogo.svg" />
+                <br />
+                Try [hjkl].
+                </p>
+                <!--<p>{{- site.description | escape -}}</p>-->
+            </div>
+        </div>
+
     </div>
-
-  </div>
 
 </footer>
