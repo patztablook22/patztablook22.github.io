@@ -1,9 +1,9 @@
 main .patztablook22 {
     position: relative;
     top: 15%;
-    font-size: 250%;
+    font-size: clamp(1.6rem, 7.5vw, 2.5rem);
 
-    @media screen and (max-height: calc(2.5rem * 5 + 2rem * 5 + 10rem)) {
+    @media screen and (max-height: calc(clamp(1.6rem, 7.5vw, 2.5rem) * 5 + 2rem * 5 + 10rem)) {
         & {
             height: $base-line-height * 1em;
         }
