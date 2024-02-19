@@ -1,10 +1,11 @@
-h1.patztablook22 {
+main .patztablook22 {
     position: relative;
     top: 15%;
     font-size: 250%;
 
     @media screen and (max-height: calc(2.5rem * 5 + 2rem * 5 + 10rem)) {
         & {
+            height: $base-line-height * 1em;
         }
 
         .effect {

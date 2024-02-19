@@ -6,11 +6,12 @@ fill: black
 permalink: /
 ---
 
-<h1 class="patztablook22">patztablook22
+<div class="patztablook22">
+    <h1 class="main">patztablook22</h1>
     <span class="effect">patztablook22</span>
     <span class="effect">patztablook22</span>
     <span class="effect">patztablook22</span>
-</h1>
+</div>
 
 <div class="overview">
     {% include navigation.html %}

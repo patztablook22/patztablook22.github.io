@@ -12,11 +12,14 @@
   bottom: 0;
 
     @media screen and (max-height: calc(25rem)) {
-        & {
-        }
+        .patztablook22 {
+            & {
+                height: $base-line-height * 1em;
+            }
 
-        .effect {
-            display: none;
+            .effect {
+                display: none;
+            }
         }
     }
 
@@ -369,13 +372,14 @@
             .patztablook22 {
                 font-size: 120%;
                 display: block;
+                height: $base-line-height * 1em;
+
+                .effect {
+                    display: none;
+                }
             }
 
             .navigation {
-                display: none;
-            }
-
-            .effect {
                 display: none;
             }
         }
