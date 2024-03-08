@@ -18,7 +18,7 @@ possibly with inspirations in the biological brain.
 I've been also experimenting with [Quantum Computing](https://github.com/patztablook22/jaq) lately.
 
 I practice a lot of jazz piano. Occasionally I perform in public. 
-I listen mostly to modern Scandinavian jazz and ECM/ACT style.
+I listen mostly to modern Scandinavian jazz and ECM/ACT records.
 My favourite pianists are
 [Esbjörn Svensson](https://en.wikipedia.org/wiki/Esbj%C3%B6rn_Svensson)
 and 
