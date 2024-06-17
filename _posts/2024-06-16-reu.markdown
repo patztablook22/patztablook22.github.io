@@ -1,0 +1,29 @@
+---
+layout: post
+title:  "Approximability of Euclidean \\(k\\)-center and \\(k\\)-diameter"
+date:   2024-06-14 20:45:01 +0100
+---
+
+
+In Euclidean data clustering, we seek to assign input data points into clusters, such that the maximum distance between points within the same cluster is 
+minimized (or alternatively, such that the maximum distance between points from their cluster's center is minimized). Through various reductions of graph
+problems (\\(k\\)-coloring, vertex cover), it is possible to show that not only is this task in \\(\ge 3\\) dimensions NP-complete, but also its approximations are NP-complete. Our
+aim in this project will be to improve known approximation factors for NP-completeness or polynomial complexity.
+
+<i><b>Def.</b></i> Let \\((X, \text{dist})\\) be a metric space and \\(C \subset X\\). Define
+\\[ \text{diam}(C) := \text{max } \\{ \text{dist}(x,y)  \mid  x, y \in C \\}. \\]
+
+<i><b>Def.</b></i> Further, for a collection of subsets \\(C_1, C_2, \dots, C_k \subset X \\),
+\\[ \text{diam}(\\{C_1, C_2, \dots, C_k\\}) := \text{max } \\{ \text{dist}(x, y)  \mid  i \in [k] \;\; \& \;\;  x, y \in C_i \\}. \\]
+
+
+<b>Max-\\(k\\)-Diameter</b> - let \\((X, \text{dist})\\) be a metric space and let \\(k\\) be a constant. Given as input \\(P \subset X\\), find a \\(k\\)-clustering 
+that minimizes \\(\text{diam}(\\{C_1, C_2, \dots, C_k\\})\\).
+
+<b>\\(r\\)-approximate Max-\\(k\\)-Diameter</b> - given \\((X, \text{dist})\\), \\(k\\), and input \\(P \subset X\\), let 
+\\(\Delta := \text{min }\text{diam}(\\{C_1, C_2, \dots, C_k\\})\\) over all possible clusterings of \\(P\\). 
+Find a \\(k\\)-clustering with diameter at most \\(r\Delta\\).
+
+...
+
+[Link to project page](http://reu.dimacs.rutgers.edu/~pz173/)

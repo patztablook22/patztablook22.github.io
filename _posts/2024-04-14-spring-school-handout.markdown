@@ -16,7 +16,7 @@ is alone sufficient with high probability.
 
 A talk about the paper 
 [Global rigidity of random graphs in \\(\mathbb{R}\\)](https://arxiv.org/abs/2401.10803v1)
-by Richard Montgomery, Rajko Nenadov, Tibor Szabó for the 
+by Richard Montgomery, Rajko Nenadov, Tibor Szabó that I gave at the 
 [Spring School of Combinatorics 2024](https://kam.mff.cuni.cz/~spring/2024/).
 
 [Link to pdf](https://drive.google.com/file/d/11Zgd2R6pLf5zuK0wTChk5dWnvopEurII/view?usp=sharing)
