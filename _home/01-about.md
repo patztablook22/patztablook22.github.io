@@ -22,7 +22,7 @@ I listen mostly to modern Scandinavian jazz and ECM/ACT records.
 My favourite pianists are
 [Esbjörn Svensson](https://en.wikipedia.org/wiki/Esbj%C3%B6rn_Svensson)
 and 
-[Brad Mehldau](https://en.wikipedia.org/wiki/Brad_Mehldau).
+[Keith Jarrett](https://en.wikipedia.org/wiki/Keith_Jarrett).
 Sometimes I reharmonize songs, and I have also done some composing.
 
 I like fractals.
