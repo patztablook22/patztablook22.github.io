@@ -1,40 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  {%- include head.html -%}
-<style>
-h1::before {
-    content: "@";
-    color: #444444;
-}
-</style>
+    {%- include head.html -%}
 
-  <body>
+    <body>
+        {%- include controls.html -%}
 
-    <div class="row">
-        <div class="left" style="">
-            <main class="page-content" aria-label="Content" style="float: left">
-
-                <div class="wrapper" style="position: relative; height: 90vh; padding-left: 3rem">
-                    <h1 style="position: absolute; top: 20%; font-size: 250%; font-weight: bold">PATZTABLOOK22</h1>
-                    <ol style="position: absolute; bottom: 0;" class="overview">
-                        <li>I am</li>
-                        <li>Papers</li>
-                        <li>Projects</li>
-                        <li>Experience</li>
-                        <li>Languages</li>
-                        <li>Important files</li>
-                    </ol>
-                </div>
-            </main>
+        <div id="front">
+            <canvas id="hydra-canvas"></canvas>
+            <div class="front-text patztablook22">patztablook22</div>
         </div>
-        <div class="right" style="height: 100vh; background: black; overflow: hidden">
-            <div style="height: 100vh; width: 100vh; position: absolute; right: -0%">
-            <img src="/assets/img/bg.jpeg" style="height: 100%"/>
-            </div>
-        </div>
-    </div>
 
-  </body>
+        <script src="{{ "/assets/js/banner.js" | relative_url }}"></script>
+
+        {%- include navigation.html -%}
+        {%- include footer.html -%}
+    </body>
 
 </html>

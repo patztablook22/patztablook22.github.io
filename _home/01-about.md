@@ -1,28 +1,28 @@
 ---
-layout: new-text
+layout: content
 title: "About"
 permalink: /about/
 ---
 
-<h1 style="font-size: 250%">ABOUT</h1>
+# About
 
 
-I am 22 years old. Currently I live in Prague,
-where I study Artificial Intelligence at the [Department of Mathematics and Physics of the Charles University](https://www.mff.cuni.cz/).
+I am 23 years old and live in Prague,
+where I study computer science at the 
+[Faculty of Mathematics and Physics of the Charles University](https://www.mff.cuni.cz/),
+and jazz piano at the
+[Jaroslav Ježek Conservatory](https://www.kjj.cz).
 
 
-I focus on neural networks, especially [Transformer](https://arxiv.org/abs/1706.03762) models.
-In the future, I would like to
-work on the potental creation of Artificial General Intelligence,
-possibly with inspirations in the biological brain. 
-I've been also experimenting with [Quantum Computing](https://github.com/patztablook22/jaq) lately.
+During my bachelor's studies, I focused on machine learning, particularly [Transformer](https://arxiv.org/abs/1706.03762) models.
+I wrote my thesis on the knot-theoretical properties of spatially embedded complete graphs.
+I've also been experimenting with some [Quantum Computing](https://github.com/patztablook22/jaq). I did a plenty of C++.
 
-I practice a lot of jazz piano. Occasionally I perform in public. 
-I listen mostly to modern Scandinavian jazz and ECM/ACT records.
+I play the piano a lot. Occasionally I perform in public. 
 My favourite pianists are
 [Esbjörn Svensson](https://en.wikipedia.org/wiki/Esbj%C3%B6rn_Svensson)
 and 
-[Keith Jarrett](https://en.wikipedia.org/wiki/Keith_Jarrett).
-Sometimes I reharmonize songs, and I have also done some composing.
+[Brad Mehldau](https://en.wikipedia.org/wiki/Brad_Mehldau). I also enjoy Baroque music, especially Bach.
+Sometimes I reharmonize songs and compose for the trio.
 
-I like fractals.
+I like Haskell and fractals.

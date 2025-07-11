@@ -1,11 +1,10 @@
 ---
-layout: new-text
+layout: content
 title: Papers
 permalink: /papers/
-background: "#303030"
 ---
 
-<h1 style="font-size: 250%">PAPERS & REPORTS</h1>
+# Papers & reports
 
 <ul class="papers no-a">
 {% for paper in site.papers reversed %}

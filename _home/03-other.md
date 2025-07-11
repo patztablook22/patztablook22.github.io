@@ -1,10 +1,10 @@
 ---
-layout: new-text
+layout: content
 title: "Other&nbsp;work"
 permalink: /other/
 ---
 
-<h1 style="font-size: 250%">OTHER WORK</h1>
+# Other work
 
 <div class="other-work no-a">
 {% for post in site.posts %}

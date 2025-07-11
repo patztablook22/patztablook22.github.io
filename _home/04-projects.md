@@ -1,11 +1,10 @@
 ---
-layout: new-text
+layout: content
 title: Projects
 permalink: /projects/
-background: "#0d1117"
 ---
 
-<h1 style="font-size: 250%">PROJECTS</h1>
+# Projects
 
 <div class="projects no-a">
 {% for project in site.projects reversed %}

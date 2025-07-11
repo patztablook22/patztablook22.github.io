@@ -27,9 +27,9 @@ body {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  //display: flex;
+  //min-height: 100vh;
+  //flex-direction: column;
   //line-height: 2em;
 }
 
@@ -209,6 +209,9 @@ pre {
   padding-right: $spacing-unit;
   padding-left: $spacing-unit;
   @extend %clearfix;
+  min-height: calc(100vh - 8rem);
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 
   @include media-query($on-laptop) {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
@@ -225,10 +228,6 @@ pre {
       padding-top: 1em;
       padding-bottom: 1em;
   }
-}
-
-.wrapper.moved {
-    margin-left: 0;
 }
 
 /**
@@ -251,8 +250,9 @@ pre {
     height: 16px;
     display: inline-block;
     fill: #{$grey-color};
-    padding-right: 5px;
+    padding-right: 0px;
     vertical-align: text-top;
+    margin-right: 5px;
 }
 
 .social-media-list {
@@ -335,7 +335,7 @@ table {
 @for $i from 1 through 99 {
   .slide-from-right:nth-child(#{$i}){
     animation: slide-from-right forwards 0.3s;
-    animation-delay: $i * 0.1s - 0.1s + 0.5s;
+    animation-delay: $i * 0.1s - 0.1s;
     opacity: 0;
   }
 }
@@ -367,67 +367,21 @@ table {
 }
 
 .patztablook22 {
-    text-transform: uppercase;
-    display: inline-block;
-    font-weight: bold;
-    user-select: none;
-    height: $base-line-height * 1em + 3em;
-    width: 10em;
+  font-weight: bold;
+  user-select: none;
 
-    .main, .effect {
-        font-weight: bold;
-        position: absolute;
-        font-size: inherit;
-        margin: 0px;
-        padding: 0px;
-        border: none;
-    }
+  color: white;
+  font-size: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: $brand-color;
+  text-decoration: none;
+  color: $brand-color;
 
-    .main {
-        text-align: left;
-        display: block;
-        z-index: 1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        color: $brand-color;
-    }
 
-    .effect {
-        z-index: 0;
-    }
-
-    a.main:hover {
-        text-decoration: none;
-        color: $brand-color;
-    }
-
-    .main::before {
-        content: "@";
-        color: #555555;
-        font-weight: bold;
-    }
-    text-align: right;
-
-    .effect {
-        user-select: none;
-
-        &::before {
-            content: "@";
-            color: #555555;
-            font-weight: bold;
-            visibility: hidden;
-        }
-
-        @for $i from 1 through 10 {
-        &:nth-child(#{$i}){
-            opacity: 1.3 - 0.3 * $i;
-            position: absolute;
-            left: 0;
-            top: 1em * $i - 1em;
-        }
-        }
-    }
+  text-align: right;
 }
 
+.patztablook22::before {
+    content: "@";
+    color: #555555;
+}
