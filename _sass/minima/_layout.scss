@@ -51,7 +51,7 @@
   bottom: 0;
 
 
-  @media (max-width: calc($content-width + 40rem)) {
+  @media (max-width: calc(#{$content-width} + 40rem)) {
     .navigation {
       display: none;
     }
