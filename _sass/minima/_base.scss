@@ -335,7 +335,7 @@ table {
 @for $i from 1 through 99 {
   .slide-from-right:nth-child(#{$i}){
     animation: slide-from-right forwards 0.3s;
-    animation-delay: $i * 0.1s - 0.1s;
+    animation-delay: $i * 0.1s - 0.1s + 0.5s;
     opacity: 0;
   }
 }
