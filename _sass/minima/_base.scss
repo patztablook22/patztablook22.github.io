@@ -383,6 +383,8 @@ table {
 }
 
 .patztablook22::before {
-    content: "@";
-    color: #555555;
+  font-family: 'JetBrains Mono', monospace;
+  margin-right: 0.15em;
+  content: "@";
+  color: #555555;
 }
