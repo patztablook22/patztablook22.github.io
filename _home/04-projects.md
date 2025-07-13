@@ -8,7 +8,7 @@ permalink: /projects/
 
 <div class="projects no-a">
 {% for project in site.projects reversed %}
-    {% unless %project.order %}
+    {% unless project.order %}
         {% continue %}
     {% endunless %}
     <a class="project slide-from-right" href="{{ project.link }}">

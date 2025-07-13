@@ -37,6 +37,8 @@ $on-palm:          600px !default;
 $on-laptop:        800px !default;
 $wide-enough:      700px !default;
 
+$navigation-width: 16rem;
+
 // Use media queries like this:
 // @include media-query($on-palm) {
 //   .wrapper {
@@ -56,9 +58,9 @@ $wide-enough:      700px !default;
 
 // Import partials.
 @import
-  "minima/base",
-  "minima/layout",
-  "minima/syntax-highlighting",
-  "minima/controls",
-  "minima/home"
+"minima/base",
+"minima/layout",
+"minima/syntax-highlighting",
+"minima/controls",
+"minima/home"
 ;

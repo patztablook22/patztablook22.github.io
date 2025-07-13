@@ -30,180 +30,174 @@
   user-select: none;
 }
 
-.overview { 
-    position: absolute;
-    align-self: flex-end;
-    bottom: 0;
-}
-
 .projects {
 
-    .project {
-        user-select: none;
-        text-decoration: none;
-        display: block;
-        float: left;
-        width: $content-width / 2 - 2px - 6 * $base-font-size;
-        border: 1px solid #30363d;
-        background: #0d1117;
-        color: $text-color;
-        height: 8rem;
+  .project {
+    user-select: none;
+    text-decoration: none;
+    display: block;
+    float: left;
+    width: calc(#{$content-width} / 2 - 2px - 6 * #{$base-font-size});
+    border: 1px solid #30363d;
+    background: #0d1117;
+    color: $text-color;
+    height: 8rem;
 
-        &:visited {
-            color: $text-color;
-        }
-
-        &:hover > * {
-            text-decoration: none;
-            opacity: 0.8;
-        }
-
-        .image {
-            height: 4rem;
-            width: 4rem;
-            margin: 2rem;
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .info {
-            width: calc(100% - 9rem);
-            margin-bottom: 3rem;
-            display: inline-block;
-        }
-
-        .technologies {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            margin-right: 0px;
-            opacity: 0.6;
-
-            img {
-                height: 1.2rem;
-                width: 1.2rem;
-            }
-
-            a {
-                display: inline;
-                width: 1.2rem;
-                height: 1.2rem;
-            }
-
-            a:hover {
-                opacity: 1;
-            }
-        }
-
-        img {
-            pointer-events: none;
-            user-select: none;
-        }
-
-        //@media screen and (max-width: $base-font-size * 20 + $content-width) {
-            & {
-                width: calc(100% - 6px - 2rem);
-                border-radius: 0;
-                margin: 3px;
-            }
-
-            &:nth-last-child(2) {
-                border-bottom: none;
-            }
-
-            .technologies {
-            }
-        //}
-
-        @media screen and (max-width: $content-width/2) {
-            & {
-            }
-
-            .image {
-                width: 1.5rem;
-                height: 1.5rem;
-                left: 5px;
-                top: 1.75rem;
-                padding: 0;
-                margin: 1rem;
-                position: relative;
-                top: 0.75rem;
-            }
-
-            .info {
-                left: calc(3rem + 5px);
-                width: calc(100% - 4rem);
-            }
-        }
-
+    &:visited {
+      color: $text-color;
     }
+
+    &:hover > * {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .image {
+      height: 4rem;
+      width: 4rem;
+      margin: 2rem;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .info {
+      width: calc(100% - 9rem);
+      margin-bottom: 3rem;
+      display: inline-block;
+    }
+
+    .technologies {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      margin-right: 0px;
+      opacity: 0.6;
+
+      img {
+        height: 1.2rem;
+        width: 1.2rem;
+      }
+
+      a {
+        display: inline;
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      a:hover {
+        opacity: 1;
+      }
+    }
+
+    img {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    //@media screen and (max-width: $base-font-size * 20 + $content-width) {
+    & {
+      width: calc(100% - 6px - 2rem);
+      border-radius: 0;
+      margin: 3px;
+    }
+
+    &:nth-last-child(2) {
+      border-bottom: none;
+    }
+
+    .technologies {
+    }
+    //}
+
+    @media screen and (max-width: calc(#{$content-width}/2)) {
+      & {
+      }
+
+      .image {
+        width: 1.5rem;
+        height: 1.5rem;
+        left: 5px;
+        top: 1.75rem;
+        padding: 0;
+        margin: 1rem;
+        position: relative;
+        top: 0.75rem;
+      }
+
+      .info {
+        left: calc(3rem + 5px);
+        width: calc(100% - 4rem);
+      }
+    }
+
+  }
 }
 
 .more-projects {
-        padding: 0.5rem 2rem 0.5rem 0rem;
-        margin: 1rem;
-        float: left;
-        width: 50%;
+  padding: 0.5rem 2rem 0.5rem 0rem;
+  margin: 1rem;
+  float: left;
+  width: 50%;
 
-        a {
-            opacity: 0.5;
-        }
+  a {
+    opacity: 0.5;
+  }
 
-        a:hover {
-            text-decoration: none;
-        }
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .papers {
 
-    .paper {
-        text-decoration: none;
-        display: block;
-        margin: 1rem;
-        background: rgba(55, 20, 55, 0.15);
-        padding: 15px;
-        border-radius: 3px;
+  .paper {
+    text-decoration: none;
+    display: block;
+    margin: 1rem;
+    background: rgba(55, 20, 55, 0.15);
+    padding: 15px;
+    border-radius: 3px;
 
-        &:hover {
-            text-decoration: none;
-        }
-
-        h2 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-        }
-
-        .authors {
-            margin-bottom: 0.5rem;
-        }
-
-        .abstract {
-            text-align: justify;
-            text-justify: inter-word;
-        }
+    &:hover {
+      text-decoration: none;
     }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .authors {
+      margin-bottom: 0.5rem;
+    }
+
+    .abstract {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
 }
 
 
 
 .other-work {
-    width: 100%;
+  width: 100%;
 
-    .work {
-        text-decoration: none;
-        display: block;
-        margin: 1rem;
+  .work {
+    text-decoration: none;
+    display: block;
+    margin: 1rem;
 
-        &:hover {
-            text-decoration: none;
-            color: $text-color;
-        }
-
-        .excerpt {
-            text-align: justify;
-            text-justify: inter-word;
-        }
+    &:hover {
+      text-decoration: none;
+      color: $text-color;
     }
+
+    .excerpt {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
 
 }
 

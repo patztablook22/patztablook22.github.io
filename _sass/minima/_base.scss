@@ -158,7 +158,7 @@ main {
 blockquote {
   color: $grey-color;
   border-left: 4px solid $grey-color-light;
-  padding-left: $spacing-unit / 2;
+  padding-left: calc(#{$spacing-unit} / 2);
   @include relative-font-size(1.125);
   letter-spacing: -1px;
   font-style: italic;
@@ -216,8 +216,8 @@ pre {
   @include media-query($on-laptop) {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
     max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-    padding-right: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
+    padding-right: calc(#{$spacing-unit} / 2);
+    padding-left:  calc(#{$spacing-unit} / 2);
   }
 }
 
@@ -373,7 +373,6 @@ table {
   color: white;
   font-size: 2rem;
   font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  //font-family: 'JetBrains Mono', monospace;
   color: $brand-color;
   text-decoration: none;
   color: $brand-color;
