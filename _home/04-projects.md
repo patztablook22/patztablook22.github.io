@@ -4,6 +4,7 @@ title: Projects
 permalink: /projects/
 ---
 
+
 # Projects
 
 <div class="projects no-a">

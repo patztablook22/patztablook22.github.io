@@ -4,8 +4,8 @@
     top: 50%;
     z-index: 5;
     font-size: 2rem;
-    margin-top: calc(-1rem);
     user-select: none;
+    margin-top: -1.5rem;
 
     img {
         filter: invert(60%);
@@ -30,10 +30,10 @@
         text-decoration: none;
     }
 
-    @include media-query(25 * $base-font-size + $content-width) {
+    @media (max-width: calc(#{$content-width} + 2 * 8rem)) {
         & {
             position: absolute;
-            top: 0.5rem;
+            top: 0.75rem;
             right: 1rem;
             margin-top: 0;
 

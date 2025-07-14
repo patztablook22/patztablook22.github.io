@@ -8,6 +8,9 @@
         {%- include header.html -%}
 
         <main class="page-content" aria-label="Content">
+            <div class="page-source">
+                <a tabindex="-1" href="{{ site.source_repo }}/blob/main/{{ page.path }}">source</a>
+            </div>
             <div class="wrapper">
                 {{ content }}
             </div>

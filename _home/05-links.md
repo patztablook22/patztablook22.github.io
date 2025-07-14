@@ -4,6 +4,7 @@ title: Links
 permalink: /links/
 ---
 
+
 # Links
 
 - [Vim configuration](https://github.com/patztablook22/dotfiles/tree/main/.config/nvim)

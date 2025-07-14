@@ -39,6 +39,37 @@
 
 }
 
+.page-source {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  padding: 1rem 1rem 1rem 1rem;
+
+
+  @media (max-width: calc(#{$content-width} + 2 * 8rem)) {
+    right: 5rem;
+  }
+
+  @include media-query($on-palm) {
+    display: none;
+  }
+
+  a {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &::before {
+      content: '[';
+    }
+
+    &::after {
+      content: ']';
+    }
+  }
+}
 
 .site-header {
   position: absolute;

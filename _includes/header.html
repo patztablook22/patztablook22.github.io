@@ -1,8 +1,8 @@
 <header class="site-header" role="banner">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
-    <div tabindex="-1" rel="author">
-        <a class="patztablook22 site-title" href="{{ "/" | relative_rul }}">patztablook22</a>
+    <div rel="author">
+        <a tabindex="-1" class="patztablook22 site-title" href="{{ "/" | relative_rul }}">patztablook22</a>
     </div>
 
     {% include navigation.html %}

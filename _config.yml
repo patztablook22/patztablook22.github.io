@@ -43,6 +43,7 @@ collections:
   technologies:
   languages:
 
+source_repo: https://github.com/patztablook22/patztablook22.github.io
 
 # Exclude from processing.
 # The following items will not be processed, by default.

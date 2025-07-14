@@ -4,15 +4,14 @@ title: "About"
 permalink: /about/
 ---
 
-# About
 
+# About
 
 I am 23 years old and live in Prague,
 where I study computer science at the 
 [Faculty of Mathematics and Physics of the Charles University](https://www.mff.cuni.cz/),
 and jazz piano at the
 [Jaroslav Ježek Conservatory](https://www.kjj.cz).
-
 
 During my bachelor's studies, I focused on machine learning, particularly [Transformer](https://arxiv.org/abs/1706.03762) models.
 I wrote my thesis on the knot-theoretical properties of spatially embedded complete graphs.

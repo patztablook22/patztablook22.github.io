@@ -36,12 +36,15 @@
     user-select: none;
     text-decoration: none;
     display: block;
-    float: left;
-    width: calc(#{$content-width} / 2 - 2px - 6 * #{$base-font-size});
+    float: left; 
     border: 1px solid #30363d;
     background: #0d1117;
     color: $text-color;
     height: 8rem;
+    width: calc(100% - 2px);
+    border-radius: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
 
     &:visited {
       color: $text-color;
@@ -50,6 +53,10 @@
     &:hover > * {
       text-decoration: none;
       opacity: 0.8;
+    }
+
+    &:hover {
+      border: 1px solid #606060;
     }
 
     .image {
@@ -94,20 +101,12 @@
       user-select: none;
     }
 
-    //@media screen and (max-width: $base-font-size * 20 + $content-width) {
-    & {
-      width: calc(100% - 6px - 2rem);
-      border-radius: 0;
-      margin: 3px;
-    }
-
     &:nth-last-child(2) {
       border-bottom: none;
     }
 
     .technologies {
     }
-    //}
 
     @media screen and (max-width: calc(#{$content-width}/2)) {
       & {
@@ -137,7 +136,6 @@
   padding: 0.5rem 2rem 0.5rem 0rem;
   margin: 1rem;
   float: left;
-  width: 50%;
 
   a {
     opacity: 0.5;
@@ -153,7 +151,8 @@
   .paper {
     text-decoration: none;
     display: block;
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     background: rgba(55, 20, 55, 0.15);
     padding: 15px;
     border-radius: 3px;
@@ -186,7 +185,6 @@
   .work {
     text-decoration: none;
     display: block;
-    margin: 1rem;
 
     &:hover {
       text-decoration: none;
