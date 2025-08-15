@@ -205,6 +205,10 @@
   margin-left: 0;
 }
 
+.contact-list li {
+  margin-bottom: 0.25em
+}
+
 .footer-col-wrapper {
   @include relative-font-size(0.9375);
   color: $grey-color;
