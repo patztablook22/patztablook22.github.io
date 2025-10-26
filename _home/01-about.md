@@ -15,7 +15,7 @@ and Jazz Piano at the
 For a living, I make backends finally work.
 
 During my bachelor's studies, I focused on machine learning, particularly [Transformer](https://arxiv.org/abs/1706.03762) models.
-I wrote my thesis on the knot-theoretical properties of spatially embedded complete graphs.
+I wrote my [thesis](https://dspace.cuni.cz/handle/20.500.11956/202639) on the knot-theoretical properties of spatially embedded complete graphs.
 I've also been experimenting with some [Quantum Computing](https://github.com/patztablook22/jaq)
 and have done plenty of C++.
 
