@@ -7,7 +7,7 @@ permalink: /about/
 
 # About
 
-I am 23 years old and live in Prague.
+I am 24 years old and live in Prague.
 I am studying for a master's degree in Computer Science at the 
 [Faculty of Mathematics and Physics of the Charles University](https://www.mff.cuni.cz/),
 and Jazz Piano at the
