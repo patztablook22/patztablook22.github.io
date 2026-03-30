@@ -21,7 +21,7 @@ content_width_class: "max-content-width"
     {% assign license_label = repo.license.name | default: 'No License' %}
 
     <div class="repo-badge">
-        <span class="repo-name"><a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a></span>
+        <span class="repo-name"><a href="{{ repo.html_url }}">{{ repo.name }}</a></span>
         <span class="repo-description">{{ repo.description }}</span>
         <span class="repo-stats">
             <span>
