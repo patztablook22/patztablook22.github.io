@@ -1,48 +1,53 @@
 ---
 layout: content
-title: Projects
-permalink: /projects/
+title: Repos
+permalink: /repos/
+background: "#1d1c21"
+content_width_class: "max-content-width"
 ---
 
+# Some repos
 
-# Projects
+<div class="repos">
 
-<div class="projects no-a">
-{% for project in site.projects reversed %}
-    {% unless project.order %}
-        {% continue %}
-    {% endunless %}
-    <a class="project slide-from-right" href="{{ project.link }}">
-    <div>
-        <div class="image">
-            {% if project.image %}
-            <img src="{{ project.image }}" />
-            {% else %}
-                <img src="https://cdn-icons-png.flaticon.com/128/2111/2111432.png" style="filter: invert(20%);" />
-            {% endif %}
-        </div>
-        <div class="info">
-            <h2>{{ project.title }}</h2>
-            {{ project.description }}
-        </div>
-        <div class="technologies">
-        {% assign technologies = project.technologies | split: " " %}
-        {% for t in technologies %}
-            {% assign tech = None %}
-            {% for t2 in site.technologies %}
-                {% if t2.ref == t %}
-                    {% assign tech = t2 %}
-                {% endif %}
-            {% endfor %}
+{% assign repos = site.github.repositories %}
+{% assign order = "matcha,patztabot22,jaq,hmm,sci-hub,shellbot,live-music-projection,genbot,metacentrum-llm-quickstart,length-based-overfitting,kali,mandelbrot-viewer-qt-quick,npfl129,dotfiles,mp3-tree-metadata,matcha-benchmark" | split: "," %}
 
-            <img src="{{ tech.icon }}" />
+{% for name in order %}
+  {% for repo in site.github.public_repositories %}
+    {% if repo.name == name %}
 
-        {% endfor %}
-        </div>
+
+    {% assign license_label = repo.license.name | default: 'No License' %}
+
+    <div class="repo-badge">
+        <span class="repo-name"><a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a></span>
+        <span class="repo-description">{{ repo.description }}</span>
+        <span class="repo-stats">
+            <span>
+                <i class="fas fa-code"></i> {{ repo.language | default: "Code" }}
+            </span>
+
+            <span>
+                <i class="fas fa-star"></i> {{ repo.stargazers_count }}
+            </span>
+
+            <span>
+              <i class="fas fa-code-branch"></i> {{ repo.forks_count }}
+            </span>
+
+            <span>
+              <i class="fas fa-balance-scale"></i> {{ repo.license.key | upcase | default: "No License" }}
+            </span>
+        </span>
     </div>
-    </a>
+
+    {% endif %}
+  {% endfor %}
 {% endfor %}
-    <div class="more-projects slide-from-right">
-        <a href="https://github.com/patztablook22/">See more...</a>
-    </div>
+
+
+</div>
+<div class="more-repos slide-from-right">
+  <a href="{{ site.github.owner_url }}">See more...</a>
 </div>

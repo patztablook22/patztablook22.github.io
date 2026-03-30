@@ -3,7 +3,7 @@
 
     {%- include head.html -%}
 
-    <body>
+    <body style="background: {{ page.background }};">
         {%- include controls.html -%}
         {%- include header.html -%}
 
@@ -11,7 +11,7 @@
             <div class="page-source">
                 <a tabindex="-1" href="{{ site.source_repo }}/blob/main/{{ page.path }}">source</a>
             </div>
-            <div class="wrapper">
+            <div class="wrapper {{ page.content_width_class | default: 'fixed-content-width' }}">
                 {{ content }}
             </div>
         </main>

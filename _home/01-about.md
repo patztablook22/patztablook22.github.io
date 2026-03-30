@@ -11,8 +11,8 @@ I am 24 years old and live in Prague.
 I am studying for a master's degree in Computer Science at the 
 [Faculty of Mathematics and Physics of the Charles University](https://www.mff.cuni.cz/),
 and Jazz Piano at the
-[Jaroslav Ježek Conservatory](https://www.kjj.cz).
-For a living, I make backends finally work.
+[Jaroslav Ježek Conservatory](https://www.kjj.cz). 
+I work as a freelancer.
 
 During my bachelor's studies, I focused on machine learning, particularly [Transformer](https://arxiv.org/abs/1706.03762) models.
 I wrote my [thesis](https://dspace.cuni.cz/handle/20.500.11956/202639) on the knot-theoretical properties of spatially embedded complete graphs.

@@ -30,110 +30,55 @@
   user-select: none;
 }
 
-.projects {
+.repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 20px;
 
-  .project {
-    user-select: none;
-    text-decoration: none;
-    display: block;
-    float: left; 
-    border: 1px solid #30363d;
-    background: #0d1117;
-    color: $text-color;
-    height: 8rem;
-    width: calc(100% - 2px);
-    border-radius: 0;
-    margin-top: 3px;
-    margin-bottom: 3px;
 
-    &:visited {
-      color: $text-color;
-    }
+  .repo-badge {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;   // <-- add this
 
-    &:hover > * {
-      text-decoration: none;
-      opacity: 0.8;
-    }
+    background: #24232a;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+    border-radius: 10px;
 
-    &:hover {
-      border: 1px solid #606060;
-    }
+    padding: 1rem;
 
-    .image {
-      height: 4rem;
-      width: 4rem;
-      margin: 2rem;
-      display: inline-block;
-      vertical-align: top;
-      opacity: 0.75;
-    }
-
-    .info {
-      width: calc(100% - 9rem);
-      margin-bottom: 3rem;
-      display: inline-block;
-    }
-
-    .technologies {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      margin-right: 0px;
-      opacity: 0.6;
-
-      img {
-        height: 1.2rem;
-        width: 1.2rem;
-      }
-
+    .repo-name {
+      color: #3b67b1;
+      display: block;
+      font-weight: bold;
       a {
-        display: inline;
-        width: 1.2rem;
-        height: 1.2rem;
-      }
-
-      a:hover {
-        opacity: 1;
+        color: inherit;
       }
     }
 
-    img {
-      pointer-events: none;
-      user-select: none;
+    .repo-description {
+      color: grey;
+      display: block;
     }
 
-    &:nth-last-child(2) {
-      border-bottom: none;
-    }
+    .repo-stats {
+      margin-top: auto;
+      color: #a0a0a0;
 
-    .technologies {
-    }
-
-    @media screen and (max-width: calc(#{$content-width}/2)) {
-      & {
+      span {
+        display: inline-block;
+        margin-right: 1.5rem;
       }
 
-      .image {
-        width: 1.5rem;
-        height: 1.5rem;
-        left: 5px;
-        top: 1.75rem;
-        padding: 0;
-        margin: 1rem;
-        position: relative;
-        top: 0.75rem;
-      }
-
-      .info {
-        left: calc(3rem + 5px);
-        width: calc(100% - 4rem);
+      .fas {
+        color: #404040;
+        margin-right: 4px;
       }
     }
-
   }
 }
 
-.more-projects {
+.more-repos {
   padding: 0.5rem 2rem 0.5rem 0rem;
   margin: 1rem;
   float: left;

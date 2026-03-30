@@ -32,6 +32,7 @@ instagram_username: patrikzavoral
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-github-metadata
 
 collections:
   home:
