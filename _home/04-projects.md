@@ -24,9 +24,11 @@ content_width_class: "max-content-width"
         <span class="repo-name"><a href="{{ repo.html_url }}">{{ repo.name }}</a></span>
         <span class="repo-description">{{ repo.description }}</span>
         <span class="repo-stats">
-            <span>
-                <i class="fas fa-code"></i> {{ repo.language | default: "Code" }}
-            </span>
+            {% if repo.language %}
+                <span>
+                    <i class="fas fa-code"></i> {{ repo.language | default: "Code" }}
+                </span>
+            {% endif %}
 
             <span>
                 <i class="fas fa-star"></i> {{ repo.stargazers_count }}
@@ -36,9 +38,11 @@ content_width_class: "max-content-width"
               <i class="fas fa-code-branch"></i> {{ repo.forks_count }}
             </span>
 
-            <span>
-              <i class="fas fa-balance-scale"></i> {{ repo.license.key | upcase | default: "No License" }}
-            </span>
+            {% if repo.license.key %}
+                <span>
+                  <i class="fas fa-balance-scale"></i> {{ repo.license.key | upcase | default: "No License" }}
+                </span>
+            {% endif %}
         </span>
     </div>
 

@@ -13,6 +13,9 @@ hr {
     margin: 1.5em 0 1em 0;
 }
 
+@view-transition {
+  navigation: auto;
+}
 
 /**
  * Basic styling
@@ -27,6 +30,7 @@ body {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
+  transition: background-color 0.4s ease;
   //display: flex;
   //min-height: 100vh;
   //flex-direction: column;

@@ -32,7 +32,7 @@
 
 .repos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
   gap: 20px;
 
 
@@ -64,15 +64,16 @@
     .repo-stats {
       margin-top: auto;
       color: #a0a0a0;
+      font-family: monospace;
+      font-size: 90%;
 
       span {
         display: inline-block;
-        margin-right: 1.5rem;
+        margin-right: 1rem;
       }
 
       .fas {
         color: #404040;
-        margin-right: 4px;
       }
     }
   }
