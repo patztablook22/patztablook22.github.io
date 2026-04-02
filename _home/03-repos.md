@@ -6,7 +6,7 @@ background: "#1d1c21"
 content_width_class: "max-content-width"
 ---
 
-# Some repos
+# Open source repos
 
 <div class="repos">
 

@@ -24,6 +24,6 @@ My favourite pianists are
 [Esbjörn Svensson](https://en.wikipedia.org/wiki/Esbj%C3%B6rn_Svensson)
 and 
 [Brad Mehldau](https://en.wikipedia.org/wiki/Brad_Mehldau). I also enjoy Baroque music, especially Bach.
-Sometimes I reharmonize songs and compose for the trio.
+I focus on playing and composing music for the trio.
 
 I like Haskell and fractals.

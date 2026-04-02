@@ -1,11 +1,11 @@
 ---
 layout: content
-title: "Other&nbsp;work"
+title: "Other"
 permalink: /other/
 ---
 
 
-# Other work
+# Other
 
 <div class="other-work no-a">
 {% for post in site.posts %}
