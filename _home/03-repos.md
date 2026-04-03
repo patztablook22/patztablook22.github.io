@@ -6,18 +6,25 @@ background: "#1d1c21"
 content_width_class: "max-content-width"
 ---
 
-# GitHub <i class="fa-brands fa-github"></i>
+<h1>
+<span style="padding: 0px 10px 5px 10px; border-bottom: 2px solid #f78166"><i class="fa-brands fa-github"></i> GitHub</span>
+<span style="font-size: 80%; margin-left: 1rem">
+<i class="fa-solid fa-square" style="color: #2ea043"></i>
+<i class="fa-solid fa-square" style="color: #033a16"></i>
+<i class="fa-solid fa-square" style="color: #56d364"></i>
+<i class="fa-solid fa-square" style="color: #196c2e"></i>
+</span>
+</h1>
 
-<div class="repos">
+<div class="repos" style="padding-top: 8px">
 
 <div class="repo-badge profile-badge">
   <div class="profile-header">
     <img src="{{ site.github.owner.avatar_url }}" class="avatar">
     <div>
       <span class="repo-name">
-        <a href="{{ site.github.owner.html_url }}">
-          {{ site.github.owner.name | default: site.github.owner.login }}
-        </a>
+        <a href="{{ site.github.owner.html_url }}">{{ site.github.owner.name | default: site.github.owner.login }}</a>
+        <span style="font-size: 90%; font-weight: normal; color: grey">&nbsp;&middot;&nbsp; vi/vim</span>
       </span>
       <span class="repo-description">{{ site.github.owner.bio }}</span>
       <div class="profile-stats">
@@ -36,7 +43,7 @@ content_width_class: "max-content-width"
 </div>
 
 {% assign repos = site.github.repositories %}
-{% assign order = "matcha,patztabot22,jaq,hmm,sci-hub,shellbot,live-music-projection,genbot,metacentrum-llm-quickstart,length-based-overfitting,kali,mandelbrot-viewer-qt-quick,npfl129,dotfiles,mp3-tree-metadata,matcha-benchmark" | split: "," %}
+{% assign order = "matcha,patztabot22,jaq,sigilify.nvim,hmm,sci-hub,shellbot,live-music-projection,genbot,metacentrum-llm-quickstart,length-based-overfitting,kali,mandelbrot-viewer-qt-quick,npfl129,mp3-tree-metadata,matcha-benchmark" | split: "," %}
 
 {% for name in order %}
   {% for repo in site.github.public_repositories %}

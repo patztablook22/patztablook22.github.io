@@ -41,9 +41,9 @@
     flex-direction: column;
     gap: 20px;   // <-- add this
 
-    background: #24232a;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+    //box-shadow: 0 3px 3px rgba(0,0,0,0.1);
     border-radius: 10px;
+    border: 1px solid #44434a;
 
     padding: 1rem;
 
@@ -80,7 +80,11 @@
 
   .profile-badge {
     grid-row: span 2;
+    margin: 8px 4px;
+    background: #24232a;
+    border: none;
   }
+
   .profile-header {
     display: flex;
     gap: 1rem;
@@ -102,6 +106,7 @@
 
     span {
       display: inline-block;
+      margin-right: 0.5rem;
 
       .fas {
         color: #404040;

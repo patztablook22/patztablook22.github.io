@@ -7,6 +7,9 @@ permalink: /about/
 
 # About
 
+<i class="fa-solid fa-quote-left" style="color: #505050; position: relative; bottom: -0.6rem"></i>
+<div style="padding-left: 1rem; border-left: 2px solid #505050" markdown="1">
+
 I am 24 years old and live in Prague.
 I am studying for a master's degree in Computer Science at the 
 [Faculty of Mathematics and Physics of the Charles University](https://www.mff.cuni.cz/),
@@ -27,3 +30,6 @@ and
 I focus on playing and composing music for the trio.
 
 I like Haskell and fractals.
+
+</div>
+<i class="fa-solid fa-quote-right" style="color: #505050; position: relative; top: -0.6rem"></i>
