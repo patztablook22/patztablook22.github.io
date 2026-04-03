@@ -77,6 +77,61 @@
       }
     }
   }
+
+  .profile-badge {
+    grid-row: span 2;
+  }
+  .profile-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .avatar {
+    height: 5rem;
+    border-radius: 50%;
+    border: 1px solid #505050;
+  }
+
+  .profile-stats {
+    margin-top: 0.5rem;
+    color: #a0a0a0;
+    font-family: monospace;
+    font-size: 90%;
+    font-weight: bold;
+
+    span {
+      display: inline-block;
+
+      .fas {
+        color: #404040;
+      }
+    }
+  }
+
+  .profile-info {
+    color: #a0a0a0;
+    font-family: monospace;
+    font-size: 90%;
+    border-top: 1px solid grey;
+    margin-top: 0.2rem;
+    padding-top: 0.8rem;
+
+    span {
+      display: block;
+      width: calc(100% - 2rem);
+      padding-left: 2rem;
+      margin-top: 0.5rem;
+
+      .fas {
+        color: #404040;
+        width: 1rem;
+        margin-left: -1.55rem;
+        text-align: center;
+      }
+    }
+  }
+
 }
 
 .more-repos {
