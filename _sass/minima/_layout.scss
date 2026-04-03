@@ -47,7 +47,7 @@
 
 
   @media (max-width: calc(#{$content-width} + 2 * 8rem)) {
-    right: 5rem;
+    display: none;
   }
 
   @include media-query($on-palm) {
@@ -56,18 +56,6 @@
 
   a {
     opacity: 0.5;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    &::before {
-      content: '[';
-    }
-
-    &::after {
-      content: ']';
-    }
   }
 }
 
@@ -92,7 +80,7 @@
 
 
 .site-title {
-  @include relative-font-size(1.8);
+  @include relative-font-size(1.5);
   color: $text-color;
   position: absolute;
   left: 30px;

@@ -6,7 +6,7 @@ background: "#1d1c21"
 content_width_class: "max-content-width"
 ---
 
-# Open source repos
+# GitHub <i class="fa-brands fa-github"></i>
 
 <div class="repos">
 
